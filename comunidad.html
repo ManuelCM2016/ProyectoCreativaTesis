@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Comunidad Creativa Tesis</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1387ec",
+                        "brand-bg": "#96C2E9",
+                        "brand-text": "#335672",
+                        "brand-text-light": "#5A7D9A",
+                        "brand-surface": "#FCFCFC",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101a22",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Lexend", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "2xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-brand-bg font-display text-brand-text antialiased overflow-x-hidden">
+<!-- Navbar -->
+<nav class="sticky top-0 z-50 w-full bg-brand-surface border-b border-[#E1E8ED]/50 shadow-sm">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<!-- Logo -->
+<div class="flex items-center gap-3">
+<div class="size-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<h2 class="text-brand-text text-xl font-bold tracking-tight">Creativa Tesis</h2>
+</div>
+<!-- Desktop Menu -->
+<div class="hidden md:flex items-center gap-8">
+<a class="text-brand-text font-medium hover:text-primary transition-colors" href="#">Inicio</a>
+<a class="text-brand-text font-medium hover:text-primary transition-colors" href="#">Recursos</a>
+<a class="text-brand-text font-medium hover:text-primary transition-colors" href="#">Comunidad</a>
+<a class="text-brand-text font-medium hover:text-primary transition-colors" href="#">Contacto</a>
+</div>
+<!-- CTA Button -->
+<div class="hidden md:flex">
+<button class="bg-primary hover:bg-blue-600 text-white font-bold py-2.5 px-6 rounded-lg transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                        Unirme GRATIS
+                    </button>
+</div>
+<!-- Mobile Menu Button -->
+<div class="md:hidden">
+<button class="text-brand-text p-2">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex flex-col min-h-screen">
+<!-- Hero Section -->
+<header class="relative pt-16 pb-20 lg:pt-24 lg:pb-32 overflow-hidden">
+<!-- Background Decoration -->
+<div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+<div class="absolute -top-[20%] -right-[10%] w-[60%] h-[60%] bg-white/20 rounded-full blur-3xl"></div>
+<div class="absolute bottom-[10%] left-[5%] w-[30%] h-[30%] bg-primary/10 rounded-full blur-3xl"></div>
+</div>
+<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative">
+<div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+<!-- Hero Content -->
+<div class="flex flex-col gap-6 text-center lg:text-left">
+<!-- Urgency Badge -->
+<div class="inline-flex items-center gap-2 self-center lg:self-start bg-yellow-100/90 border border-yellow-200 px-4 py-2 rounded-full animate-pulse">
+<span class="material-symbols-outlined text-yellow-700 text-sm">warning</span>
+<span class="text-yellow-800 text-xs font-bold uppercase tracking-wider">Próximamente servicio de pago</span>
+</div>
+<h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.1] text-brand-text tracking-tight">
+                            Acelera tu Tesis con la Comunidad <span class="text-primary">#1 en Latinoamérica</span>
+</h1>
+<p class="text-lg sm:text-xl text-brand-text/80 font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                            Únete a más de <span class="font-bold text-brand-text">700 estudiantes</span> que ya están graduándose con nuestros recursos exclusivos, soporte con IA y asesoría experta.
+                        </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+<button class="flex items-center justify-center gap-2 bg-primary hover:bg-blue-600 text-white text-lg font-bold py-4 px-8 rounded-xl transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 w-full sm:w-auto group">
+<span>¡Quiero unirme GRATIS!</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<button class="flex items-center justify-center gap-2 bg-white/40 hover:bg-white/60 text-brand-text border border-white/50 text-lg font-bold py-4 px-8 rounded-xl transition-all backdrop-blur-sm w-full sm:w-auto">
+<span class="material-symbols-outlined">play_circle</span>
+<span>Ver cómo funciona</span>
+</button>
+</div>
+<div class="pt-6 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 text-sm font-medium text-brand-text/70">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-green-600 filled text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Sin tarjeta de crédito</span>
+</div>
+<div class="hidden sm:block text-brand-text/30">•</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-green-600 filled text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Acceso inmediato</span>
+</div>
+</div>
+</div>
+<!-- Hero Visual / Stats -->
+<div class="relative mx-auto w-full max-w-[500px] lg:max-w-none">
+<div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/30 aspect-[4/3] bg-brand-surface group">
+<!-- Main Hero Image -->
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Group of students working together on laptops in a library" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBP_HQfBIlo7jiHV2dmWgif6hrU-rju_IPkDJQEVaqAM_DHunC9D3_TeDcTecJlzCkz1yS7lUqnpRZKKLMrv0DKzgg4zrdGzXJVJ9ByDyE6jfiXKiwwsr1x9pg5SaDMmO2RitZUu4W4C5S4QUfQgBUaWrF98tlnjXsMgLZ-_4uEoH2NkPrmcJzK-mUtnLYTbRPdaGNw0InsmjqTC0OrOgigszQGiQWaka8zdnWl47BQmsJhS77o670vemF4d89Z5Y49btiWkAq5fao');"></div>
+<!-- Overlay Gradient -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<!-- Floating Stat Card 1 -->
+<div class="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-lg border border-white/50 flex items-center justify-between">
+<div>
+<p class="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-1">Estudiantes Activos</p>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-black text-brand-text">700+</span>
+<span class="text-sm text-green-500 font-bold flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                            Creciendo
+                                        </span>
+</div>
+</div>
+<div class="bg-blue-50 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary text-3xl">groups</span>
+</div>
+</div>
+</div>
+<!-- Decorative Elements behind image -->
+<div class="absolute -z-10 -top-6 -right-6 w-full h-full border-2 border-white/30 rounded-2xl hidden sm:block"></div>
+<div class="absolute -z-10 -bottom-6 -left-6 w-24 h-24 bg-yellow-300 rounded-full blur-xl opacity-60"></div>
+</div>
+</div>
+</div>
+</header>
+<!-- Features Section -->
+<section class="py-20 bg-brand-surface rounded-t-[3rem] shadow-[0_-20px_40px_rgba(0,0,0,0.05)] relative z-10">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<h2 class="text-brand-text text-3xl md:text-4xl font-black mb-4">Todo lo que necesitas para tu tesis</h2>
+<p class="text-brand-text-light text-lg">Accede a herramientas y conocimientos validados que acelerarán tu investigación de meses a semanas.</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Feature 1 -->
+<div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 group">
+<div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl group-hover:text-white transition-colors">smart_toy</span>
+</div>
+<h3 class="text-xl font-bold text-brand-text mb-2">Prompts de IA Optimizados</h3>
+<p class="text-brand-text-light leading-relaxed">Comandos listos para usar en ChatGPT y otras IAs, diseñados específicamente para redacción académica.</p>
+</div>
+<!-- Feature 2 -->
+<div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 group">
+<div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl group-hover:text-white transition-colors">menu_book</span>
+</div>
+<h3 class="text-xl font-bold text-brand-text mb-2">Explicaciones Detalladas</h3>
+<p class="text-brand-text-light leading-relaxed">Guías paso a paso para desarrollar cada capítulo de tu tesis, desde el planteamiento hasta las conclusiones.</p>
+</div>
+<!-- Feature 3 -->
+<div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 group">
+<div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl group-hover:text-white transition-colors">security</span>
+</div>
+<h3 class="text-xl font-bold text-brand-text mb-2">Anti-plagio y Uso de IA</h3>
+<p class="text-brand-text-light leading-relaxed">Mantente al día con las últimas herramientas de detección y aprende a humanizar tu redacción.</p>
+</div>
+<!-- Feature 4 -->
+<div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 group">
+<div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl group-hover:text-white transition-colors">diamond</span>
+</div>
+<h3 class="text-xl font-bold text-brand-text mb-2">Recursos Exclusivos</h3>
+<p class="text-brand-text-light leading-relaxed">Acceso a plantillas Word, formatos APA 7ma edición y e-books descargables gratis.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Community / Social Proof Section -->
+<section class="py-16 bg-white border-t border-gray-100">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="max-w-md text-center md:text-left">
+<h3 class="text-2xl font-bold text-brand-text mb-2">Comunidad Hispanoamericana</h3>
+<p class="text-brand-text-light">Estudiantes de toda la región confían en nuestra metodología.</p>
+</div>
+<div class="flex-1 flex flex-col gap-4">
+<!-- Flags Representation using styled placeholders/images -->
+<div class="grid grid-cols-4 sm:grid-cols-8 gap-4 items-center opacity-80 grayscale hover:grayscale-0 transition-all duration-500">
+<!-- Using Placeholder Images for Flags to ensure stability without external dependencies breaking -->
+<div class="aspect-[3/2] rounded overflow-hidden shadow-sm bg-gray-100" title="Peru">
+<img alt="Peru flag" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBDU8JoxKKrakRPqqUqNiQ7iVZfgfwWOeJ32v2IHONavgI4bie3CiGlZIrGy0eyKK31g1t6Vb2KdrZLM478YU7kP5NxClBRwDnAd4O0lHH9Bd8UXq35fb2uCyiKI_-AENi8lIMZVVLCiag_WPWpD8kDivNgOq3IBfQiLkcOUmMTOgV_dCTkvyW0nfO3wP63usinhGjlE62R-HnJaPEvY2-9mtVSMOb2tRxmgeM9nY3z49pCAM-0CdNwQz5mMY9pfD9W0gXviWQC6s"/>
+</div>
+<div class="aspect-[3/2] rounded overflow-hidden shadow-sm bg-gray-100" title="Mexico">
+<img alt="Mexico flag" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASEz_FvL65DAOFf39-eAsLl7jpMBWqMlhlIGmIF4HPS4IIqKruhPy8j2fdBQnQaoO57v58qmWXmxjfxiA8M2DQAldKWLJ-jFnQ22IIeIFEC2CqGO-4-GOsq4vRsFja4yhJDnvFKXD-PLl9qAFPH0prjIH5rseSR051NcoqXB5gAPDjL7NyU1x6fqbjiA0Npo4vDrGt_QrNyXBvj9cz0kXDNSDwDtZhoFX9-lvW7jJPQS9iXEsXGkpgQ6lSXxvcp6bWRWqD4QVf4Dk"/>
+</div>
+<div class="aspect-[3/2] rounded overflow-hidden shadow-sm bg-gray-100" title="Colombia">
+<img alt="Colombia flag" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfudsiKecFf7j74GLLXgU4vuaj98sA5WA7Aq7U3U_Z5aHaW6SrtVDwlHDfeYjYARQaKgLXoRQzQQd6shYlzklWb6Ar4qmDMBABHH-ZbyDm4OuCIpEQwSUH3OgaC7cIK73j-TSbgzYHUVlPvH89c4xnlyIT_qi5hKYC3dsvx3odG5xBri7fLYGOxEuL2yMJ88U9ZBoEpPLoXXG7flnMkATm_a8MxASBQxNNaFmfbus_8HGtDGc7VJJ7CUcwchlJ2Ste-Bs-so56V90"/>
+</div>
+<div class="aspect-[3/2] rounded overflow-hidden shadow-sm bg-gray-100" title="Chile">
+<img alt="Chile flag" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALG7kI8uWLIm3g4vNaZfU8QeCeHqvD6wfSXdTPpkkzQUP17k2cM09RwvQ7X82o5RkudiZu7Ghd40VnTi3V1v00lwzedds8FFSV5RK_SZVwN5lz0rBUL1SQMj6uhIIyLX3uXWt-7XDYKJqPioTKhwiC7Vuop94sUw9cpiZF5Hl6UfB2lN98Y0f1RfrhFFxUfG3d5XW9c0m75L05XESdLiBVUSIPGyBv0CpS5SP6VGr37C8_4mcVZLFsFX_lDCCE0ZESUlbcKxzTHdY"/>
+</div>
+<div class="aspect-[3/2] rounded overflow-hidden shadow-sm bg-gray-100" title="Argentina">
+<img alt="Argentina flag" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBus2zWpycmYASH4uFClODj3SDfULR9qI710W4nt1l2XbV8zEy_N8cyeNObDJZwcQ-2yH4plBX30OwdBJO10rVt65KUMaPchF1-uIhgIfRFFdR-oYO-4rJkKLY2hoGdpOi17BIFu8PNHbh3g8rMxXuWvlyXYp8gLhx83V4zUTnSuDJvBmTwBj1qZaL_lrfSqn5raMsu1T1WIzN8WutkreBi2JKmYxOd434Et8KuHSC-A0aUI5OIbaI3hYZPvQZ9QIq3Fr3Boi5DLpY"/>
+</div>
+<div class="aspect-[3/2] rounded overflow-hidden shadow-sm bg-gray-100" title="Ecuador">
+<img alt="Ecuador flag" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLtG1tJqDlr7KpHWcD5RIb8JeIJ8fmONw-5N8b_OIuFN_Rtwg04D4PNYPy7V_PQbs1VUwP_BC94P-RVgeWyBLOxqfpsH77O7QZ2XsQ1vulMjH6UDO-9oPHufaSjtY7-jAWUp86fJVYsOTKhJSPAoCAdp0ojjOianwSbgrCztcJeieF2ohxupSuxquRqQ5HwNSUnLTsdHSaNDjMvOXMXqbbvIFjMd83Ipn6OCZQh9mCCut9pOgJmqJIBmNwv5dXpBuQOrLLJ2PnGBI"/>
+</div>
+<div class="aspect-[3/2] rounded overflow-hidden shadow-sm bg-gray-100" title="Bolivia">
+<img alt="Bolivia flag" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFKNVWaFEY6NGDg3wPjEHOFG97jCLEyj1x_MG1j6oOMyKfOVyEgR0gBXQciwPU8KbFK1HEJ-vhWHkyd9asZ3bDd9rYhkTOzknNYeOAPRanqKmfgXwc3ZCDsnMjctqOKoYAo1ube3NcLbbpu-MID5SARmrn85eZ5CClfU7Rk27ptqsytDFEUK3v3asNvXVnStaSiSxQJmJhHAl-aAEkrUT8vGRYP950iuOm9ClaZq3uAiX9zfoOYRp9hr7GVTv5rGmcddedI3L3oTE"/>
+</div>
+<div class="aspect-[3/2] rounded overflow-hidden shadow-sm bg-gray-100" title="Spain">
+<img alt="Spain flag" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEqnCAfgqT44sBG3WdJ6lOXfgwWeEeM_xN5TKNL3k80ThjQvEG6oYWDs1fzWkxtvJd55VQOKAWEYzP6iCKxxYVHj9ksgygGyLO2RhCE1ZZbNgDel1RF1R1PqWGCJL8JHOlGi_wDwznMabbGAZ3KMcyr9FsvL0vtNKDC-spD41kLJyYBTq2wvFT846XlxPEhJqLhH7l-b1_f4qw0lFlATwDRxdeQVplTas8YwPgUvbKwLzdRWt2dkEr0wLW7W9H68igy_zDvytFJKc"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA / Urgency -->
+<section class="py-20 relative overflow-hidden">
+<!-- Background Gradient mimicking the brand-bg with depth -->
+<div class="absolute inset-0 bg-gradient-to-b from-[#96C2E9] to-[#8ebae0]"></div>
+<!-- Pattern Overlay -->
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+<div class="bg-white/90 backdrop-blur-lg rounded-3xl p-8 md:p-12 shadow-2xl border border-white/50">
+<div class="inline-block bg-primary/10 text-primary font-bold px-4 py-1.5 rounded-full text-sm mb-6 uppercase tracking-wider">
+                        Oferta Limitada
+                    </div>
+<h2 class="text-3xl md:text-5xl font-black text-brand-text mb-6 tracking-tight">
+                        No esperes a que sea de pago
+                    </h2>
+<p class="text-xl text-brand-text/80 mb-8 max-w-2xl mx-auto">
+                        Estamos construyendo la biblioteca de recursos de tesis más grande de Latinoamérica. Únete hoy y asegura tu acceso gratuito de por vida a los recursos actuales.
+                    </p>
+<button class="w-full md:w-auto bg-primary hover:bg-blue-600 text-white text-xl font-bold py-4 px-12 rounded-xl transition-all shadow-lg hover:shadow-2xl hover:scale-105">
+                        ¡Quiero unirme GRATIS ahora!
+                    </button>
+<p class="mt-4 text-sm text-gray-500">
+                        🔒 Acceso seguro y sin spam. Puedes darte de baja cuando quieras.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-brand-text text-white py-12">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-white/10 rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-xl">school</span>
+</div>
+<span class="text-lg font-bold">Creativa Tesis</span>
+</div>
+<div class="flex gap-8 text-sm text-gray-300">
+<a class="hover:text-white transition-colors" href="#">Términos</a>
+<a class="hover:text-white transition-colors" href="#">Privacidad</a>
+<a class="hover:text-white transition-colors" href="#">Contacto</a>
+</div>
+<div class="text-sm text-gray-400">
+                        © 2024 Creativa Tesis. Tacna, Perú.
+                    </div>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

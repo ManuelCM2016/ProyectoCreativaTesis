@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Calculadora de Tesis Creativa</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#96c1e9",
+                        "primary-dark": "#335672",
+                        "primary-light": "#eef6fc",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#121920",
+                        "result-bg": "#FCFCFC",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .step-active {
+            @apply border-primary ring-2 ring-primary/20;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-[#121417] antialiased">
+<div class="flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e5e8eb] bg-white/95 px-10 py-3 backdrop-blur-sm">
+<div class="flex items-center gap-4 text-[#121417]">
+<div class="size-8 flex items-center justify-center rounded-lg bg-primary/20 text-primary-dark">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<h2 class="text-[#121417] text-xl font-bold leading-tight tracking-[-0.015em]">Creativa Tesis</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-[#121417] text-sm font-medium leading-normal hover:text-primary-dark transition-colors" href="#">Inicio</a>
+<a class="text-[#121417] text-sm font-medium leading-normal hover:text-primary-dark transition-colors" href="#">Servicios</a>
+<a class="text-[#121417] text-sm font-medium leading-normal hover:text-primary-dark transition-colors" href="#">Nosotros</a>
+<a class="text-[#121417] text-sm font-medium leading-normal hover:text-primary-dark transition-colors" href="#">Blog</a>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary hover:bg-[#85b0d8] text-[#121417] text-sm font-bold leading-normal tracking-[0.015em] transition-colors shadow-sm">
+<span class="truncate">Diagnóstico Gratis</span>
+</button>
+</div>
+<!-- Mobile Menu Icon -->
+<button class="md:hidden p-2 text-[#121417]">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col items-center justify-start py-10 px-4 md:px-10 lg:px-20">
+<!-- Hero / Header Section -->
+<div class="max-w-4xl w-full text-center mb-10">
+<h1 class="text-[#121417] text-3xl md:text-5xl font-black leading-tight tracking-[-0.033em] mb-4">
+                    Calculadora de Cronograma de Tesis
+                </h1>
+<p class="text-[#667685] text-lg font-normal leading-normal max-w-2xl mx-auto">
+                    Recibe un plan de trabajo estimado y un pre-diagnóstico de tu situación académica en menos de 2 minutos.
+                </p>
+</div>
+<!-- Calculator Container -->
+<div class="bg-white w-full max-w-[960px] rounded-2xl shadow-lg border border-[#e5e8eb] overflow-hidden flex flex-col md:flex-row">
+<!-- Left Side: Interactive Form -->
+<div class="flex-1 p-6 md:p-10 flex flex-col gap-8">
+<!-- Progress Bar -->
+<div class="flex flex-col gap-3">
+<div class="flex gap-6 justify-between items-center">
+<p class="text-primary-dark text-sm font-bold uppercase tracking-wider">Paso 1 de 3</p>
+<span class="text-[#667685] text-xs">Datos Académicos</span>
+</div>
+<div class="rounded-full bg-[#f0f4f8] h-2 w-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500 ease-out" style="width: 33%;"></div>
+</div>
+</div>
+<!-- Step 1 Content -->
+<div class="flex flex-col gap-6">
+<h3 class="text-[#121417] text-xl font-bold">Cuéntanos sobre tu carrera</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<label class="flex flex-col gap-2">
+<span class="text-[#121417] text-sm font-medium">Carrera Profesional</span>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#667685]">school</span>
+<input class="w-full rounded-lg border border-[#dce1e4] bg-white h-12 pl-10 pr-4 text-sm focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none placeholder:text-[#9aaebf]" placeholder="Ej. Ingeniería Civil"/>
+</div>
+</label>
+<label class="flex flex-col gap-2">
+<span class="text-[#121417] text-sm font-medium">Universidad</span>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#667685]">account_balance</span>
+<input class="w-full rounded-lg border border-[#dce1e4] bg-white h-12 pl-10 pr-4 text-sm focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none placeholder:text-[#9aaebf]" placeholder="Ej. UNJBG"/>
+</div>
+</label>
+</div>
+<div class="flex flex-col gap-3">
+<label class="text-[#121417] text-sm font-medium">¿Qué tipo de investigación planeas?</label>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="cursor-pointer group rounded-xl border border-[#dce1e4] p-4 hover:border-primary hover:bg-primary-light transition-all">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">analytics</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#121417]">Cuantitativa</span>
+<span class="text-xs text-[#667685]">Datos y estadísticas</span>
+</div>
+</div>
+</div>
+<div class="cursor-pointer group rounded-xl border border-[#dce1e4] p-4 hover:border-primary hover:bg-primary-light transition-all">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">psychology</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#121417]">Cualitativa</span>
+<span class="text-xs text-[#667685]">Entrevistas y análisis</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Navigation Actions -->
+<div class="mt-auto pt-6 border-t border-[#f0f4f8] flex justify-end">
+<button class="flex items-center justify-center gap-2 rounded-lg bg-primary hover:bg-[#85b0d8] text-[#121417] px-8 h-12 text-base font-bold transition-all shadow-md hover:shadow-lg transform active:scale-95">
+<span>Siguiente</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Right Side: Live Preview / Teaser -->
+<div class="w-full md:w-[320px] bg-result-bg border-l border-[#e5e8eb] p-6 flex flex-col gap-6">
+<div class="flex items-center gap-2 text-primary-dark">
+<span class="material-symbols-outlined">lightbulb</span>
+<h4 class="font-bold text-sm uppercase tracking-wide">Pre-visualización</h4>
+</div>
+<!-- Timeline Teaser -->
+<div class="rounded-xl bg-white border border-[#e5e8eb] p-4 shadow-sm relative overflow-hidden group">
+<div class="absolute inset-0 bg-white/60 backdrop-blur-[1px] z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-xs font-bold text-primary-dark bg-primary/20 px-3 py-1 rounded-full">Completa los datos para ver</span>
+</div>
+<h5 class="text-xs font-bold text-[#667685] mb-3 uppercase">Cronograma Estimado</h5>
+<div class="flex flex-col gap-4 relative">
+<!-- Timeline line -->
+<div class="absolute left-[7px] top-2 bottom-2 w-[2px] bg-[#e5e8eb]"></div>
+<div class="flex gap-3 items-center z-0">
+<div class="size-4 rounded-full border-2 border-primary bg-white z-0"></div>
+<div class="flex-1 h-2 bg-[#f0f4f8] rounded w-20"></div>
+</div>
+<div class="flex gap-3 items-center z-0 opacity-50">
+<div class="size-4 rounded-full border-2 border-[#dce1e4] bg-white z-0"></div>
+<div class="flex-1 h-2 bg-[#f0f4f8] rounded w-16"></div>
+</div>
+<div class="flex gap-3 items-center z-0 opacity-30">
+<div class="size-4 rounded-full border-2 border-[#dce1e4] bg-white z-0"></div>
+<div class="flex-1 h-2 bg-[#f0f4f8] rounded w-24"></div>
+</div>
+</div>
+</div>
+<!-- Info Card -->
+<div class="rounded-xl bg-primary/10 p-5 border border-primary/20">
+<h4 class="text-primary-dark font-bold text-lg mb-2">¿Sabías que?</h4>
+<p class="text-sm text-[#4a5f70] leading-relaxed">
+                            El 65% de los estudiantes se retrasan más de 6 meses por no elegir correctamente su metodología al inicio.
+                        </p>
+</div>
+<!-- Trust Indicators -->
+<div class="mt-auto">
+<p class="text-xs text-[#667685] mb-3 font-medium text-center">Más de 500 estudiantes asesorados</p>
+<div class="flex justify-center -space-x-3">
+<div class="size-8 rounded-full border-2 border-white bg-gray-200 bg-cover bg-center" data-alt="Estudiante 1" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC-d6MmDm8yb3Ta0r8PL-9Jz-i0SVLwnhg_D75jbhvuoo3cdPqdax_B_GRwffHN0MzIDF694Z9yKwxKZRWHodNpnqDuz2XR2Hzt1l-PxWWzFfxsCB8jX1_kJ89k46sLEDZQoYS9ytmgYOfNAgs05jcPB90KMqe4h-FsEW5PE2uJhu6poX7kHF0AsvJTIPWQ7UHGVMz914nu0N9kwvErXNY89cZXGP9mjVyJChKs0obG77abgIDCe4vO_lOe2eqTWCqKgrzNauFCBzM')"></div>
+<div class="size-8 rounded-full border-2 border-white bg-gray-200 bg-cover bg-center" data-alt="Estudiante 2" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCpO3vMwq0ggttj5klxo4zMeACnKjnl3E2JIczGFlR9yZVYaVxC-3wjlQA5Iv72624hggqtNwJMM-sn3XA5kp3PQC18IT9nsiTCfTxaAkjKnvfHDkq1SbgUz1qiIpWJCCJIRVRTqTQ0cG25ks0ZI67zynsXyxK4w4fiiSyvz6Xs2SeMwHvW_0fmz1t4NKElYvcdV8yTas6-TRJYTOZoa5E0tdxEQE7W4TyMtvH-64uc79VtjNgGnnudchAsz1gBU0Xb8Q7WYkVOHaM')"></div>
+<div class="size-8 rounded-full border-2 border-white bg-gray-200 bg-cover bg-center" data-alt="Estudiante 3" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCIllavaM6nAXj2FnSwHOyj0yd9iC7ZKhcc6kxaT30iHrjQVbPTrWFts2q8vQ5gIMg9dvtQAzAf9KRzbGxo6qAdC0JheSMrL-83OFpE6RkiVu-c1p9tydsAj18PS4ShSaZAn21LffozF9TIueu3xNs9m2hIa3wi1Bh_rsDs94WtxEFVktMi08_EpIcbi2LniI0wwoLCHiwCoP_q1uTj3JLoSHxPurN1e7gUJifJKzrl2Coe1MSBNgVRoYPsnLO9VTW_QhjUpLfEvLU')"></div>
+<div class="size-8 rounded-full border-2 border-white bg-primary text-white flex items-center justify-center text-[10px] font-bold">+500</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Features Section below calculator -->
+<div class="w-full max-w-[960px] mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="flex flex-col items-center text-center gap-3 p-4">
+<div class="size-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-2xl">timer</span>
+</div>
+<h3 class="text-[#121417] font-bold text-lg">Ahorra Tiempo</h3>
+<p class="text-[#667685] text-sm leading-relaxed">Optimiza tu tiempo con un plan estructurado y realista adaptado a tu ritmo.</p>
+</div>
+<div class="flex flex-col items-center text-center gap-3 p-4">
+<div class="size-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-2xl">verified</span>
+</div>
+<h3 class="text-[#121417] font-bold text-lg">Diagnóstico Preciso</h3>
+<p class="text-[#667685] text-sm leading-relaxed">Identifica cuellos de botella antes de que ocurran con nuestra IA.</p>
+</div>
+<div class="flex flex-col items-center text-center gap-3 p-4">
+<div class="size-12 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-2xl">support_agent</span>
+</div>
+<h3 class="text-[#121417] font-bold text-lg">Asesoría Experta</h3>
+<p class="text-[#667685] text-sm leading-relaxed">Conecta con asesores especializados en tu carrera universitaria.</p>
+</div>
+</div>
+</main>
+<!-- Footer Simple -->
+<footer class="w-full border-t border-[#e5e8eb] bg-white py-8 mt-10">
+<div class="max-w-[960px] mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-[#667685] text-sm">© 2024 Creativa Tesis. Todos los derechos reservados.</p>
+<div class="flex gap-4">
+<a class="text-[#667685] hover:text-primary-dark transition-colors" href="#"><span class="material-symbols-outlined">social_leaderboard</span></a>
+<a class="text-[#667685] hover:text-primary-dark transition-colors" href="#"><span class="material-symbols-outlined">smart_display</span></a> <!-- instagram/video equiv -->
+</div>
+</div>
+</footer>
+<!-- Floating Chatbot Widget -->
+<div class="fixed bottom-6 right-6 z-50 group">
+<div class="absolute bottom-16 right-0 w-64 bg-white rounded-xl shadow-xl border border-[#e5e8eb] p-4 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto transform translate-y-2 group-hover:translate-y-0 duration-300">
+<div class="flex items-start gap-3">
+<div class="size-8 rounded-full bg-primary/20 text-primary-dark flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-sm">smart_toy</span>
+</div>
+<div>
+<p class="text-xs font-bold text-[#121417] mb-1">Asistente Virtual</p>
+<p class="text-xs text-[#667685]">¿Tienes dudas sobre tu tema? ¡Estoy aquí para ayudarte!</p>
+</div>
+</div>
+</div>
+<button class="size-14 rounded-full bg-primary-dark text-white shadow-lg hover:bg-[#25425a] transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">chat</span>
+</button>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Creativa Tesis - Calculadora de Cronograma</title>
+<!-- Google Fonts: Lexend -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1387ec",
+                        "primary-dark": "#0f6cbd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101a22",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1c2a36",
+                        "text-main-light": "#111518",
+                        "text-main-dark": "#f0f2f4",
+                        "text-sub-light": "#617789",
+                        "text-sub-dark": "#9ba8b4",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom date input styling */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            opacity: 0.5;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark transition-colors duration-200">
+<div class="relative flex min-h-screen flex-col overflow-x-hidden">
+<!-- Navbar -->
+<header class="sticky top-0 z-50 w-full border-b border-[#f0f2f4] dark:border-[#2a3b4d] bg-white/90 dark:bg-surface-dark/90 backdrop-blur-md">
+<div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-text-main-light dark:text-white">Creativa Tesis</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors" href="#">Inicio</a>
+<a class="text-sm font-medium text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors" href="#">Servicios</a>
+<a class="text-sm font-medium text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors" href="#">Nosotros</a>
+<a class="text-sm font-medium text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors" href="#">Contacto</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex items-center justify-center rounded-lg bg-primary px-5 py-2 text-sm font-bold text-white transition-all hover:bg-primary-dark shadow-sm hover:shadow-md">
+                        Agendar Asesoría
+                    </button>
+<!-- Mobile Menu Button -->
+<button class="md:hidden p-2 text-text-main-light dark:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow">
+<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+<div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16 items-start">
+<!-- Left Column: Content & Value Prop -->
+<div class="flex flex-col gap-6 lg:sticky lg:top-24">
+<div class="inline-flex w-fit items-center gap-2 rounded-full bg-blue-50 dark:bg-blue-900/30 px-3 py-1 text-xs font-semibold text-primary">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                            Pre-diagnóstico Gratuito
+                        </div>
+<h1 class="text-4xl font-black leading-tight tracking-tight text-text-main-light dark:text-white sm:text-5xl lg:text-6xl">
+                            Calcula tu fecha de <span class="text-primary">graduación</span>
+</h1>
+<p class="text-lg text-text-sub-light dark:text-text-sub-dark leading-relaxed">
+                            Descubre cuánto tiempo real necesitas para terminar tu tesis. Nuestra herramienta inteligente analiza tu situación y genera un cronograma personalizado.
+                        </p>
+<div class="mt-4 flex flex-col gap-4">
+<div class="flex gap-4 items-start">
+<div class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</div>
+<div>
+<h3 class="font-bold text-text-main-light dark:text-white">Ruta Crítica Personalizada</h3>
+<p class="text-sm text-text-sub-light dark:text-text-sub-dark">Identifica los hitos clave desde la elección del tema hasta la sustentación.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined text-sm font-bold">analytics</span>
+</div>
+<div>
+<h3 class="font-bold text-text-main-light dark:text-white">Diagnóstico de Viabilidad</h3>
+<p class="text-sm text-text-sub-light dark:text-text-sub-dark">Evaluamos si tu fecha objetivo es realista o requiere un plan acelerado.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400">
+<span class="material-symbols-outlined text-sm font-bold">school</span>
+</div>
+<div>
+<h3 class="font-bold text-text-main-light dark:text-white">Especialistas en Tacna</h3>
+<p class="text-sm text-text-sub-light dark:text-text-sub-dark">Algoritmo ajustado a los tiempos administrativos de universidades locales.</p>
+</div>
+</div>
+</div>
+<!-- Trust / Social Proof -->
+<div class="mt-8 pt-8 border-t border-[#f0f2f4] dark:border-[#2a3b4d]">
+<p class="text-xs font-semibold text-text-sub-light dark:text-text-sub-dark uppercase tracking-wider mb-4">Estudiantes graduados de:</p>
+<div class="flex flex-wrap gap-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-300">
+<!-- Placeholders for University Logos -->
+<div class="h-8 w-24 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" data-alt="University Logo Placeholder 1"></div>
+<div class="h-8 w-24 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" data-alt="University Logo Placeholder 2"></div>
+<div class="h-8 w-24 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" data-alt="University Logo Placeholder 3"></div>
+</div>
+</div>
+</div>
+<!-- Right Column: Interactive Calculator Card -->
+<div class="relative w-full">
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl shadow-xl border border-[#f0f2f4] dark:border-[#2a3b4d] overflow-hidden">
+<!-- Card Header -->
+<div class="bg-primary/5 px-6 py-4 border-b border-[#f0f2f4] dark:border-[#2a3b4d] flex justify-between items-center">
+<span class="text-sm font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-base">calculate</span>
+                                    Calculadora de Tesis
+                                </span>
+<span class="text-xs font-medium text-text-sub-light dark:text-text-sub-dark">Paso 1 de 2</span>
+</div>
+<div class="p-6 sm:p-8 flex flex-col gap-8">
+<!-- Progress Bar Component -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-end">
+<p class="text-text-main-light dark:text-white font-medium">Datos Académicos</p>
+<span class="text-sm text-primary font-bold">50%</span>
+</div>
+<div class="h-2 w-full rounded-full bg-[#f0f2f4] dark:bg-[#2a3b4d] overflow-hidden">
+<div class="h-full w-1/2 rounded-full bg-primary transition-all duration-500 ease-out"></div>
+</div>
+</div>
+<!-- Form Fields -->
+<form class="flex flex-col gap-6" onsubmit="event.preventDefault();">
+<!-- Field: Academic Level (Segmented Button) -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-text-main-light dark:text-text-sub-dark">Nivel Académico</label>
+<div class="grid grid-cols-2 gap-2 p-1 bg-[#f0f2f4] dark:bg-[#101a22] rounded-lg">
+<label class="cursor-pointer">
+<input checked="" class="peer sr-only" name="level" type="radio" value="pregrado"/>
+<div class="flex items-center justify-center rounded-md py-2.5 text-sm font-medium text-text-sub-light dark:text-text-sub-dark transition-all peer-checked:bg-white dark:peer-checked:bg-[#2a3b4d] peer-checked:text-primary peer-checked:shadow-sm">
+                                                    Pregrado
+                                                </div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="level" type="radio" value="posgrado"/>
+<div class="flex items-center justify-center rounded-md py-2.5 text-sm font-medium text-text-sub-light dark:text-text-sub-dark transition-all peer-checked:bg-white dark:peer-checked:bg-[#2a3b4d] peer-checked:text-primary peer-checked:shadow-sm">
+                                                    Posgrado
+                                                </div>
+</label>
+</div>
+</div>
+<!-- Field: Study Area (Select) -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-text-main-light dark:text-text-sub-dark">Campo de Estudio</label>
+<div class="relative">
+<select class="w-full appearance-none rounded-lg border border-[#dbe1e6] dark:border-[#3e4c59] bg-white dark:bg-[#1a2632] px-4 py-3 pr-10 text-base text-text-main-light dark:text-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors cursor-pointer">
+<option disabled="" selected="" value="">Selecciona tu carrera</option>
+<option value="ingenieria">Ingeniería y Arquitectura</option>
+<option value="salud">Ciencias de la Salud</option>
+<option value="derecho">Derecho y Ciencias Políticas</option>
+<option value="educacion">Educación y Humanidades</option>
+<option value="negocios">Administración y Negocios</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-text-sub-light">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Field: Target Date (Date Input) -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-text-main-light dark:text-text-sub-dark">Fecha deseada de sustentación</label>
+<div class="relative">
+<input class="w-full appearance-none rounded-lg border border-[#dbe1e6] dark:border-[#3e4c59] bg-white dark:bg-[#1a2632] px-4 py-3 text-base text-text-main-light dark:text-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors placeholder:text-text-sub-light" min="2024-01-01" type="date"/>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-text-sub-light bg-transparent">
+<!-- Icon is visually handled by input type date indicator usually, but adding for aesthetics if needed custom -->
+</div>
+</div>
+<p class="text-xs text-text-sub-light dark:text-text-sub-dark">Te diremos si esta fecha es realista según tu avance.</p>
+</div>
+<!-- Action Button -->
+<button class="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-4 text-base font-bold text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-primary-dark hover:shadow-blue-500/30 active:scale-[0.98]">
+<span>Calcular mi Cronograma</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</form>
+</div>
+<!-- Bottom info -->
+<div class="bg-blue-50/50 dark:bg-blue-900/10 px-6 py-4 text-center">
+<p class="text-xs text-text-sub-light dark:text-text-sub-dark">
+<span class="material-symbols-outlined align-middle text-sm mr-1">lock</span>
+                                    Tus datos son privados y se usan solo para el diagnóstico.
+                                </p>
+</div>
+</div>
+<!-- Abstract decorative elements behind card -->
+<div class="absolute -top-10 -right-10 -z-10 h-64 w-64 rounded-full bg-blue-400/20 blur-3xl dark:bg-blue-600/10"></div>
+<div class="absolute -bottom-10 -left-10 -z-10 h-64 w-64 rounded-full bg-purple-400/20 blur-3xl dark:bg-purple-600/10"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Chatbot Button -->
+<div class="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2">
+<!-- Bubble Message -->
+<div class="animate-bounce mb-2 rounded-lg bg-white dark:bg-surface-dark px-4 py-2 text-sm font-medium text-text-main-light dark:text-white shadow-lg border border-[#f0f2f4] dark:border-[#2a3b4d] origin-bottom-right transition-transform">
+                ¿Necesitas ayuda con tu tema? 👋
+            </div>
+<!-- FAB -->
+<button class="group flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white shadow-lg shadow-blue-500/30 transition-all hover:scale-110 hover:bg-primary-dark focus:outline-none focus:ring-4 focus:ring-blue-300">
+<span class="material-symbols-outlined text-3xl group-hover:hidden">chat_bubble</span>
+<span class="material-symbols-outlined hidden text-3xl group-hover:block">edit_square</span>
+</button>
+</div>
+</div>
+</body></html>

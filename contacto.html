@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contacto - Creativa Tesis</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#335672", // Deep Blue from user palette for primary actions
+                        "primary-light": "#96C2E9", // Light Blue from user palette
+                        "background-light": "#FCFCFC", // Main background from user palette
+                        "background-dark": "#101a22",
+                        "text-main": "#335672", // Deep Blue for Headings
+                        "text-body": "#515055", // Dark Grey for Body
+                        "border-color": "#B9B4B8", // Grayish purple for borders
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        .symbol-filled {
+            font-variation-settings:
+            'FILL' 1,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-body flex flex-col min-h-screen overflow-x-hidden">
+<!-- Top Navbar -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-[#f0f2f4] dark:border-gray-800 dark:bg-background-dark/90">
+<div class="px-6 lg:px-40 flex justify-center py-3">
+<div class="flex items-center justify-between w-full max-w-[1200px]">
+<div class="flex items-center gap-4 text-text-main dark:text-white">
+<div class="size-8 flex items-center justify-center text-primary dark:text-primary-light">
+<span class="material-symbols-outlined text-3xl">school</span>
+</div>
+<h2 class="text-text-main dark:text-white text-xl font-bold leading-tight tracking-tight">Creativa Tesis</h2>
+</div>
+<nav class="hidden md:flex flex-1 justify-end gap-8 items-center">
+<div class="flex items-center gap-9">
+<a class="text-text-body hover:text-primary dark:text-gray-300 dark:hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Inicio</a>
+<a class="text-text-body hover:text-primary dark:text-gray-300 dark:hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Servicios</a>
+<a class="text-text-body hover:text-primary dark:text-gray-300 dark:hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Nosotros</a>
+<a class="text-primary font-bold dark:text-white text-sm leading-normal transition-colors" href="#">Contacto</a>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary hover:bg-[#254055] transition-colors text-white text-sm font-bold leading-normal tracking-[0.015em] shadow-sm">
+<span class="truncate">Agendar Asesoría</span>
+</button>
+</nav>
+<!-- Mobile Menu Button -->
+<button class="md:hidden text-text-main dark:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center w-full">
+<!-- Hero / Page Heading -->
+<section class="w-full px-6 lg:px-40 py-12 flex justify-center bg-gradient-to-b from-[#f0f4f8] to-background-light dark:from-gray-900 dark:to-background-dark">
+<div class="max-w-[1200px] w-full flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col gap-4 max-w-2xl">
+<h1 class="text-text-main dark:text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">
+                        Contáctanos
+                    </h1>
+<p class="text-text-body dark:text-gray-400 text-lg font-normal leading-relaxed max-w-lg">
+                        ¿Listo para aprobar tu tesis? Déjanos tus datos o visítanos en nuestra oficina en Tacna para una asesoría personalizada.
+                    </p>
+</div>
+<!-- Abstract decorative element -->
+<div class="hidden md:block opacity-80">
+<span class="material-symbols-outlined text-[120px] text-primary-light/30">edit_document</span>
+</div>
+</div>
+</section>
+<!-- Two Column Layout -->
+<div class="w-full px-6 lg:px-40 pb-20 flex justify-center">
+<div class="max-w-[1200px] w-full grid grid-cols-1 lg:grid-cols-12 gap-12 pt-8">
+<!-- Left Column: Form -->
+<div class="lg:col-span-7 bg-white dark:bg-[#1a2632] p-8 rounded-2xl shadow-sm border border-[#e5e7eb] dark:border-gray-700">
+<h2 class="text-text-main dark:text-white text-2xl font-bold leading-tight mb-6">Envíanos un mensaje</h2>
+<form class="flex flex-col gap-6">
+<!-- Row 1 -->
+<div class="flex flex-col md:flex-row gap-5">
+<label class="flex flex-col flex-1">
+<p class="text-text-main dark:text-gray-300 text-sm font-medium leading-normal pb-2">Nombre Completo</p>
+<input class="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-body dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/20 border border-border-color bg-white dark:bg-gray-800 focus:border-primary h-12 placeholder:text-[#9ca3af] px-4 text-base font-normal transition-all" placeholder="Juan Pérez" type="text"/>
+</label>
+</div>
+<!-- Row 2 -->
+<div class="flex flex-col md:flex-row gap-5">
+<label class="flex flex-col flex-1">
+<p class="text-text-main dark:text-gray-300 text-sm font-medium leading-normal pb-2">Correo Electrónico</p>
+<input class="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-body dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/20 border border-border-color bg-white dark:bg-gray-800 focus:border-primary h-12 placeholder:text-[#9ca3af] px-4 text-base font-normal transition-all" placeholder="juan@ejemplo.com" type="email"/>
+</label>
+<label class="flex flex-col flex-1">
+<p class="text-text-main dark:text-gray-300 text-sm font-medium leading-normal pb-2">Celular / WhatsApp</p>
+<input class="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-body dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/20 border border-border-color bg-white dark:bg-gray-800 focus:border-primary h-12 placeholder:text-[#9ca3af] px-4 text-base font-normal transition-all" placeholder="918 677 900" type="tel"/>
+</label>
+</div>
+<!-- Row 3: University (Optional but helpful context) -->
+<label class="flex flex-col flex-1">
+<p class="text-text-main dark:text-gray-300 text-sm font-medium leading-normal pb-2">Universidad / Carrera</p>
+<input class="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-body dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/20 border border-border-color bg-white dark:bg-gray-800 focus:border-primary h-12 placeholder:text-[#9ca3af] px-4 text-base font-normal transition-all" placeholder="Ej. UNJBG - Ingeniería Comercial" type="text"/>
+</label>
+<!-- Row 4: Message -->
+<label class="flex flex-col flex-1">
+<p class="text-text-main dark:text-gray-300 text-sm font-medium leading-normal pb-2">¿En qué podemos ayudarte?</p>
+<textarea class="flex w-full min-w-0 flex-1 resize-none rounded-lg text-text-body dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/20 border border-border-color bg-white dark:bg-gray-800 focus:border-primary min-h-[140px] placeholder:text-[#9ca3af] p-4 text-base font-normal transition-all" placeholder="Cuéntanos brevemente sobre tu tema de tesis o el problema que tienes..."></textarea>
+</label>
+<!-- Submit Button -->
+<div class="pt-2">
+<button class="w-full md:w-auto cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-primary hover:bg-[#254055] text-white text-base font-bold leading-normal tracking-[0.015em] shadow-md transition-all active:scale-[0.98]" type="submit">
+                                Enviar Consulta
+                            </button>
+</div>
+</form>
+</div>
+<!-- Right Column: Contact Info & Map -->
+<div class="lg:col-span-5 flex flex-col gap-8">
+<!-- Info Cards -->
+<div class="flex flex-col gap-4">
+<h2 class="text-text-main dark:text-white text-2xl font-bold leading-tight mb-2">Información de contacto</h2>
+<!-- Address -->
+<div class="flex items-start gap-4 p-4 rounded-xl bg-white dark:bg-[#1a2632] border border-transparent hover:border-primary-light transition-all shadow-sm group">
+<div class="size-12 rounded-full bg-primary-light/20 flex items-center justify-center shrink-0 group-hover:bg-primary-light/40 transition-colors">
+<span class="material-symbols-outlined text-primary dark:text-primary-light symbol-filled">location_on</span>
+</div>
+<div class="flex flex-col">
+<p class="text-text-main dark:text-white font-bold text-lg">Visítanos</p>
+<p class="text-text-body dark:text-gray-400 text-sm leading-relaxed">
+                                    Central Boulevard / 2º Piso<br/>
+                                    Av. San Martín 561 - Tacna
+                                </p>
+</div>
+</div>
+<!-- Phone -->
+<div class="flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-[#1a2632] border border-transparent hover:border-primary-light transition-all shadow-sm group">
+<div class="size-12 rounded-full bg-primary-light/20 flex items-center justify-center shrink-0 group-hover:bg-primary-light/40 transition-colors">
+<span class="material-symbols-outlined text-primary dark:text-primary-light symbol-filled">call</span>
+</div>
+<div class="flex flex-col">
+<p class="text-text-main dark:text-white font-bold text-lg">Llámanos</p>
+<a class="text-text-body dark:text-gray-400 hover:text-primary dark:hover:text-primary-light text-sm font-medium transition-colors" href="tel:918677900">
+                                    918 677 900
+                                </a>
+</div>
+</div>
+<!-- Email -->
+<div class="flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-[#1a2632] border border-transparent hover:border-primary-light transition-all shadow-sm group">
+<div class="size-12 rounded-full bg-primary-light/20 flex items-center justify-center shrink-0 group-hover:bg-primary-light/40 transition-colors">
+<span class="material-symbols-outlined text-primary dark:text-primary-light symbol-filled">mail</span>
+</div>
+<div class="flex flex-col">
+<p class="text-text-main dark:text-white font-bold text-lg">Escríbenos</p>
+<a class="text-text-body dark:text-gray-400 hover:text-primary dark:hover:text-primary-light text-sm font-medium transition-colors" href="mailto:informes@creativatesis.pe">
+                                    informes@creativatesis.pe
+                                </a>
+</div>
+</div>
+</div>
+<!-- Map Image -->
+<div class="relative w-full h-64 rounded-2xl overflow-hidden shadow-md border border-gray-200 dark:border-gray-700 group">
+<img alt="Map showing location in Tacna city center with streets and buildings" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-location="Tacna, Peru" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEwWZxBPVQw3-CHfCqYCkypBb9dXD6IeBzGtOq0eMn_lgZWMBzF4auydePlbOtqIEPySWWVKQ03vrqkjQAJiOufRw9Y9u_hV6qygZ2UAeZNMbIhBhGq7HaLrQ3dqZtN8AkFBhqKOrK3WTlkmamWk9N6NcaVo70d54aOWt0mNH5SFPRBumF8IDPZhyEyqqYeHtsk_CefM60aDKqhYMZX97xTZcMMeVl0F_gQ2Ne2C6wa6zfuxAO984f2eRHTBF1ScylBRr70S3JTR4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+<div class="flex items-center gap-2 text-white">
+<span class="material-symbols-outlined text-primary-light">map</span>
+<span class="font-medium text-sm">Ver en Google Maps</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Simple -->
+<footer class="bg-white dark:bg-background-dark border-t border-gray-100 dark:border-gray-800 py-10 px-6 lg:px-40">
+<div class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2 text-text-main dark:text-white">
+<span class="material-symbols-outlined text-2xl text-primary dark:text-primary-light">school</span>
+<span class="font-bold text-lg">Creativa Tesis</span>
+</div>
+<div class="text-sm text-text-body dark:text-gray-500">
+                © 2024 Creativa Tesis. Todos los derechos reservados.
+            </div>
+<div class="flex gap-4">
+<a class="text-text-body hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="#">
+<span class="sr-only">Facebook</span>
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path>
+</svg>
+</a>
+<a class="text-text-body hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="#">
+<span class="sr-only">Instagram</span>
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.468 2.53c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" fill-rule="evenodd"></path>
+</svg>
+</a>
+</div>
+</div>
+</footer>
+<!-- Chatbot FAB -->
+<div class="fixed bottom-6 right-6 z-50">
+<button class="relative group flex items-center justify-center size-16 bg-primary hover:bg-[#254055] text-white rounded-full shadow-lg transition-all hover:scale-110 active:scale-95">
+<span class="material-symbols-outlined text-3xl symbol-filled">smart_toy</span>
+<!-- Badge/Notification -->
+<span class="absolute top-0 right-0 flex h-4 w-4">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-light opacity-75"></span>
+<span class="relative inline-flex rounded-full h-4 w-4 bg-[#4ade80]"></span>
+</span>
+<!-- Tooltip -->
+<span class="absolute right-full mr-4 bg-white dark:bg-gray-800 text-text-main dark:text-white px-3 py-2 rounded-lg text-sm font-medium shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                ¿Necesitas ayuda con tu tesis?
+            </span>
+</button>
+</div>
+</body></html>
