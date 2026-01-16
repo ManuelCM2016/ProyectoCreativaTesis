@@ -42,8 +42,24 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={[playfair.variable, inter.variable, 'antialiased'].join(' ')}>
-        <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+      <body className={[playfair.variable, inter.variable, 'antialiased', 'relative'].join(' ')}>
+        {/* Subtle Gradient Background Overlay */}
+        <div
+          className="fixed inset-0 z-0 pointer-events-none"
+          style={{
+            background: `linear-gradient(45deg, 
+              #E6F4FC 0%, 
+              #D4EBFA 20%, 
+              #F0F7FB 40%, 
+              #E3F0F7 60%, 
+              #D1E4EF 80%, 
+              #C9DFF0 100%)`,
+            opacity: 0.75
+          }}
+        />
+
+        {/* Content Container */}
+        <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden z-10">
           <Navbar />
           <main className="flex flex-col bg-background-light dark:bg-background-dark">
             {children}

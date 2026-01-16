@@ -106,7 +106,7 @@ export default function SuccessCasesPage() {
     return (
         <>
             {/* Hero Section */}
-            <header className="relative overflow-hidden bg-background-light dark:bg-background-dark pt-16 pb-12 lg:pt-24 lg:pb-20">
+            <header className="relative overflow-hidden  pt-16 pb-12 lg:pt-24 lg:pb-20">
                 <div className="mx-auto max-w-[1280px] px-6 lg:px-10">
                     <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
                         <div className="flex flex-col gap-6">
@@ -437,3 +437,4 @@ export default function SuccessCasesPage() {
         </>
     );
 }
+

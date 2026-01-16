@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function OtrosServiciosPage() {
     return (
-        <section className="w-full px-4 md:px-20 py-16 bg-background-light dark:bg-background-dark">
+        <section className="w-full px-4 md:px-20 py-16 ">
             <div className="max-w-[960px] mx-auto">
                 <h1 className="text-navy-text font-heading text-4xl md:text-5xl font-black mb-6 dark:text-white">
                     Otros servicios de investigación
@@ -17,7 +17,7 @@ export default function OtrosServiciosPage() {
                     Servicios complementarios para apoyar tu desarrollo académico y profesional.
                 </p>
 
-                <div className="bg-white dark:bg-slate-900 p-8 rounded-xl border border-slate-200 dark:border-slate-700 text-center">
+                <div className="bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm p-8 rounded-xl border border-slate-200 dark:border-slate-700 text-center">
                     <span className="material-symbols-outlined text-6xl text-primary-blue mb-4">construction</span>
                     <h2 className="text-navy-text dark:text-white font-heading text-2xl font-bold mb-3">
                         Próximamente
@@ -34,3 +34,4 @@ export default function OtrosServiciosPage() {
         </section>
     );
 }
+

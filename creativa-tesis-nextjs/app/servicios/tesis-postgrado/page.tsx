@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function TesisPostgradoPage() {
     return (
-        <section className="w-full px-4 md:px-20 py-16 bg-background-light dark:bg-background-dark">
+        <section className="w-full px-4 md:px-20 py-16 ">
             <div className="max-w-[960px] mx-auto">
                 <h1 className="text-navy-text font-heading text-4xl md:text-5xl font-black mb-6 dark:text-white">
                     Tesis de postgrado: rigor metodológico y excelencia académica
@@ -68,3 +68,4 @@ export default function TesisPostgradoPage() {
         </section>
     );
 }
+

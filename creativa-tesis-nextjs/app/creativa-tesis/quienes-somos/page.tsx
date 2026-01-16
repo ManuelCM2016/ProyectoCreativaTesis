@@ -52,7 +52,7 @@ export default function QuienesSomosPage() {
     return (
         <>
             {/* Hero Section */}
-            <section className="w-full px-4 md:px-20 py-16 bg-background-light dark:bg-background-dark">
+            <section className="w-full px-4 md:px-20 py-16 ">
                 <div className="max-w-[960px] mx-auto flex flex-col md:flex-row gap-12 items-center">
                     <div className="flex-1 flex flex-col gap-6">
                         <Badge>Nuestra Historia</Badge>
@@ -76,9 +76,9 @@ export default function QuienesSomosPage() {
                     <div className="flex-1 w-full">
                         <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                             <Image
-                                alt="Group of university students collaborating on a project in a library"
+                                alt="Equipo de Creativa Tesis"
                                 className="object-cover w-full h-full"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAaK00b-ts7qQb97nK1B4lnzjF6jznapA4cJ3hPVwRzPmJZlEBXW88Un0pxyb-De0O_U2SEebQzDTRimT9rVC2ENfH7kSFOVjSoXu9Spi3vzDBxIkuT29MJCJZhmEjAbHQVOXvNd-Hr_ZzZ-p4xn3JWDjfSVDlQdY32DPEveAoAnCqG0CZDUvlldPdNrk24MgXlHR7_O8-ViGyOnQzF243Y6cOiFDf8e-xq0FTAO-YKsvyFwcXIU3bDkcSCsNxcMb3zlWaPxEBc30"
+                                src="/team_photo.jpg"
                                 width={600}
                                 height={450}
                             />
@@ -89,7 +89,7 @@ export default function QuienesSomosPage() {
             </section>
 
             {/* Mission & Vision Cards */}
-            <section className="w-full px-4 md:px-20 py-12 bg-white dark:bg-slate-900">
+            <section className="w-full px-4 md:px-20 py-12 bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm">
                 <div className="max-w-[1024px] mx-auto">
                     <div className="flex flex-col items-center text-center mb-12">
                         <h2 className="text-navy-text font-heading text-3xl font-bold mb-4 dark:text-white">
@@ -107,8 +107,7 @@ export default function QuienesSomosPage() {
                             <div
                                 className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                                 style={{
-                                    backgroundImage:
-                                        'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBO95ezgPERSd7ksvvkOHWwk6Y9lC-1U6NzGJAcpFnuJ8TLNGu2ynbSLgF4bhgNmH8f4XIwfARpclE2ZQdgUNxgfuYi3RovPov6Nl8_-es63ymwKa01R5CcTHJgB-AAh6G9-jPsHi2vL95zMwxB_bnoPd5HvkLCQuGWGHODC0cZmauP6qceEWhZp4llTwQKAUxBfHHWfAdSd2ySfNkWJMQGvQCqn5w2DZxDtzczktSMwM3j5L-yhhWZa7TZSF5Q5wgJ9FIyvuGoHrA")',
+                                    backgroundImage: 'url("/team-vision2.jpg")',
                                 }}
                             ></div>
                             <div className="absolute inset-0 bg-gradient-to-t from-navy-text/95 via-navy-text/60 to-transparent"></div>
@@ -129,8 +128,7 @@ export default function QuienesSomosPage() {
                             <div
                                 className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                                 style={{
-                                    backgroundImage:
-                                        'url("https://lh3.googleusercontent.com/aida-public/AB6AXuDwLrTJ9Op9Mx1y8QrIpdiaUlnzm07E8-0YSE1FNV63s-FR22fbypI1GmUN1T8fm-YTwa69RlFSz47ApHd-g7mDdIlMnG5ZlslvC3_1KagwBSg89JfaHfJc_yhhpTxGgcN5kgjnBKxt93I5CFbZlU1JkCRPZVXGcboQQ1sRyl1U3149p9vidXTYGBo9-Ee6NaKd2MytBxsRqvetqu9QJxUL1m0rSNtdYK7PiVqpnSnyEyRpDL6igbeV_I0Y6vW5GRj4AvY0oAwF42I")',
+                                    backgroundImage: 'url("/team-mision2.jpg")',
                                 }}
                             ></div>
                             <div className="absolute inset-0 bg-gradient-to-t from-navy-text/95 via-navy-text/60 to-transparent"></div>
@@ -184,7 +182,7 @@ export default function QuienesSomosPage() {
                         {/* Stats Grid */}
                         <div className="grid grid-cols-2 gap-4">
                             <div className="bg-secondary-blue/10 p-6 rounded-xl flex flex-col justify-center items-center dark:bg-secondary-blue/20">
-                                <span className="text-3xl font-black text-primary-blue mb-1">500+</span>
+                                <span className="text-3xl font-black text-primary-blue mb-1">100+</span>
                                 <span className="text-slate-600 font-body text-sm font-medium dark:text-gray-400">
                                     Tesis Aprobadas
                                 </span>
@@ -199,6 +197,9 @@ export default function QuienesSomosPage() {
                                 <span className="text-3xl font-black text-navy-text mb-1 dark:text-white">Sur del Perú</span>
                                 <span className="text-slate-600 font-body text-sm font-medium dark:text-gray-400">
                                     Sede Principal
+                                </span>
+                                <span className="text-slate-600 font-body text-sm font-medium dark:text-gray-400">
+                                    Pronto más sedes en todo Perú!
                                 </span>
                             </div>
                         </div>
@@ -245,3 +246,4 @@ export default function QuienesSomosPage() {
         </>
     );
 }
+

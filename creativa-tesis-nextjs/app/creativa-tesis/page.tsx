@@ -3,7 +3,7 @@ import Button from '@/components/ui/Button';
 
 export default function CreativaTesisPage() {
     return (
-        <div className="w-full px-4 md:px-20 py-16 bg-background-light dark:bg-background-dark">
+        <div className="w-full px-4 md:px-20 py-16 ">
             <div className="max-w-[960px] mx-auto text-center">
                 <h1 className="text-navy-text font-heading text-4xl md:text-5xl font-black mb-6 dark:text-white">
                     Bienvenido a Creativa Tesis
@@ -24,3 +24,4 @@ export default function CreativaTesisPage() {
         </div>
     );
 }
+

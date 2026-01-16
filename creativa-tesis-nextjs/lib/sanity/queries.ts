@@ -50,6 +50,7 @@ export const getBlogPosts = async () => {
         title,
         slug,
         excerpt,
+        content,
         "author": author->name,
         publishedAt,
         "mainImage": mainImage.asset->url
@@ -97,7 +98,11 @@ export const getSuccessCases = async () => {
         thesisTopic,
         quote,
         "avatar": avatar.asset->url,
-        slug
+        slug,
+        content,
+        resultsBadges,
+        university,
+        thesisTopic
       }`
         );
     } catch (error) {

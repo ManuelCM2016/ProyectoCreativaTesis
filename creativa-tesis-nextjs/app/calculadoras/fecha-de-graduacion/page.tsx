@@ -2,35 +2,27 @@
 
 import { useState } from 'react';
 
-interface FormDataType {
-    career: string;
-    university: string;
-    researchType: string;
-    currentStage: string;
-    dedication: string;
-}
-
-interface TimelineResult {
-    estimatedMonths: number;
-    graduationDate: string;
-    milestones: {
+interface CalculationResult {
+    isViable: boolean;
+    totalMonths: number;
+    estimatedDate: string;
+    phases: {
         name: string;
         duration: string;
-        startMonth: number;
+        tasks: string[];
+        icon: string;
     }[];
     recommendation: string;
 }
 
-export default function GraduationCalculatorPage() {
-    const [step, setStep] = useState(1);
-    const [formData, setFormData] = useState<FormDataType>({
-        career: '',
-        university: '',
-        researchType: '',
-        currentStage: '',
-        dedication: '',
+export default function PreDiagnosisCalculatorPage() {
+    const [formData, setFormData] = useState({
+        level: 'pregrado',
+        field: '',
+        targetDate: '',
     });
-    const [result, setResult] = useState<TimelineResult | null>(null);
+
+    const [result, setResult] = useState<CalculationResult | null>(null);
     const [showResult, setShowResult] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -38,368 +30,312 @@ export default function GraduationCalculatorPage() {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    const calculateTimeline = (): TimelineResult => {
-        // Base months by research type
-        const baseMonths = formData.researchType === 'cuantitativa' ? 8 : 7;
-
-        // Adjust by current stage
-        const stageAdjustment: Record<string, number> = {
-            tema: 0,
-            marco: -2,
-            campo: -4,
-            redaccion: -6,
+    const calculateTimeline = (): CalculationResult => {
+        // Duración base por campo (en meses)
+        const baseDuration: Record<string, number> = {
+            ingenieria: 8,
+            salud: 10,
+            derecho: 7,
+            educacion: 6,
+            negocios: 7,
         };
 
-        // Adjust by dedication
-        const dedicationMultiplier: Record<string, number> = {
-            completo: 1,
-            medio: 1.5,
-            parcial: 2,
-        };
+        const duration = baseDuration[formData.field] || 8;
+        const adjustedDuration = formData.level === 'posgrado' ? duration + 4 : duration;
 
-        const adjusted = (baseMonths + (stageAdjustment[formData.currentStage] || 0)) *
-            (dedicationMultiplier[formData.dedication] || 1);
-
-        const estimatedMonths = Math.ceil(adjusted);
-
-        // Calculate graduation date
+        // Calcular fecha estimada
         const today = new Date();
-        const gradDate = new Date(today);
-        gradDate.setMonth(gradDate.getMonth() + estimatedMonths);
+        const estimatedDate = new Date(today);
+        estimatedDate.setMonth(estimatedDate.getMonth() + adjustedDuration);
 
-        // Generate milestones
-        const milestones = [
-            { name: 'Aprobación de Tema', duration: '2 semanas', startMonth: 0 },
-            { name: 'Marco Teórico Completo', duration: '2-3 meses', startMonth: 1 },
-            { name: 'Trabajo de Campo', duration: '2-4 meses', startMonth: 3 },
-            { name: 'Análisis de Datos', duration: '1-2 meses', startMonth: 5 },
-            { name: 'Redacción Final', duration: '1-2 meses', startMonth: 6 },
-            { name: 'Revisión y Correcciones', duration: '2-4 semanas', startMonth: 7 },
-            { name: 'Sustentación', duration: '1 día', startMonth: estimatedMonths },
+        // Verificar viabilidad
+        const targetDate = formData.targetDate ? new Date(formData.targetDate) : null;
+        const isViable = targetDate ? estimatedDate <= targetDate : true;
+
+        // Fases con iconos
+        const phases = [
+            {
+                name: 'Planificación y Aprobación',
+                duration: '1-2 meses',
+                tasks: ['Elección del tema', 'Revisión bibliográfica', 'Plan de tesis', 'Aprobación'],
+                icon: 'edit_note',
+            },
+            {
+                name: 'Marco Teórico',
+                duration: formData.level === 'posgrado' ? '3-4 meses' : '2-3 meses',
+                tasks: ['Revisión exhaustiva', 'Marco teórico', 'Metodología', 'Instrumentos'],
+                icon: 'menu_book',
+            },
+            {
+                name: 'Trabajo de Campo',
+                duration: '2-3 meses',
+                tasks: ['Recolección de datos', 'Análisis estadístico', 'Resultados', 'Gráficos'],
+                icon: 'analytics',
+            },
+            {
+                name: 'Redacción Final',
+                duration: '2-3 meses',
+                tasks: ['Redacción', 'Correcciones', 'Revisión', 'Sustentación'],
+                icon: 'trophy',
+            },
         ];
 
         let recommendation = '';
-        if (formData.dedication === 'completo') {
-            recommendation = '🎯 Excelente! Con dedicación completa podrás avanzar rápidamente.';
-        } else if (formData.dedication === 'medio') {
-            recommendation = '⏰ Buen ritmo. Mantén la constancia para cumplir el cronograma.';
+        if (!isViable && targetDate) {
+            recommendation =
+                '⚠️ Tu fecha objetivo es ajustada. Recomendamos plan acelerado con asesoría intensiva.';
         } else {
-            recommendation = '📚 Requiere más tiempo. Considera aumentar las horas semanales.';
+            recommendation = '✅ Tu fecha objetivo es realista. Con organización puedes lograrlo.';
         }
 
         return {
-            estimatedMonths,
-            graduationDate: gradDate.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }),
-            milestones,
+            isViable,
+            totalMonths: adjustedDuration,
+            estimatedDate: estimatedDate.toLocaleDateString('es-ES', { year: 'numeric', month: 'long' }),
+            phases,
             recommendation,
         };
     };
 
-    const handleNext = () => {
-        if (step === 1 && (!formData.career || !formData.university)) {
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!formData.field || !formData.targetDate) {
             alert('Por favor completa todos los campos');
             return;
         }
-        if (step === 2 && !formData.researchType) {
-            alert('Por favor selecciona el tipo de investigación');
-            return;
-        }
-        if (step < 3) setStep(step + 1);
-    };
-
-    const handlePrev = () => {
-        if (step > 1) setStep(step - 1);
-    };
-
-    const handleCalculate = () => {
-        if (!formData.currentStage || !formData.dedication) {
-            alert('Por favor completa todos los campos');
-            return;
-        }
-        const timeline = calculateTimeline();
-        setResult(timeline);
+        const calculatedResult = calculateTimeline();
+        setResult(calculatedResult);
         setShowResult(true);
         setTimeout(() => document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' }), 100);
     };
 
-    const progress = (step / 3) * 100;
+    const progress = formData.field && formData.targetDate ? 100 : formData.field ? 66 : 33;
+    const isFieldComplete = formData.field !== '';
+    const isDateComplete = formData.targetDate !== '';
 
     return (
-        <div className="flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark">
-            <main className="flex-1 flex flex-col items-center py-10 px-4 lg:px-20">
-                <div className="max-w-4xl w-full text-center mb-10">
-                    <h1 className="text-5xl font-black text-navy-text dark:text-white mb-4">
-                        Calculadora de Cronograma de Tesis
-                    </h1>
-                    <p className="text-lg text-slate-600">
-                        Planifica tu camino hacia la graduación en menos de 2 minutos
-                    </p>
-                </div>
-
-                <div className="bg-white dark:bg-slate-900 w-full max-w-[960px] rounded-2xl shadow-lg border overflow-hidden flex flex-col md:flex-row">
-                    {/* Left: Form */}
-                    <div className="flex-1 p-10 flex flex-col gap-8">
-                        {/* Progress */}
-                        <div className="flex flex-col gap-3">
-                            <div className="flex justify-between items-center">
-                                <p className="text-sm font-bold uppercase text-navy-text">Paso {step} de 3</p>
-                                <span className="text-xs text-gray-500">
-                                    {step === 1 && 'Datos Académicos'}
-                                    {step === 2 && 'Tipo de Investigación'}
-                                    {step === 3 && 'Situación Actual'}
-                                </span>
+        <div className="relative flex min-h-screen flex-col ">
+            <main className="flex-grow py-12 px-4 lg:px-8">
+                <div className="mx-auto max-w-7xl">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                        {/* Left: Info */}
+                        <div className="flex flex-col gap-6">
+                            <div className="inline-flex w-fit items-center gap-2 rounded-full bg-blue-50 dark:bg-blue-900/30 px-3 py-1 text-xs font-bold text-primary-blue dark:text-blue-300">
+                                <span className="material-symbols-outlined text-sm">schedule</span>
+                                Pre-diagnóstico Gratuito
                             </div>
-                            <div className="rounded-full bg-gray-200 h-2 w-full overflow-hidden">
-                                <div
-                                    className="h-full bg-secondary-blue rounded-full transition-all duration-500"
-                                    style={{ width: `${progress}%` }}
-                                />
-                            </div>
-                        </div>
 
-                        {/* Step 1 */}
-                        {step === 1 && (
-                            <div className="flex flex-col gap-6">
-                                <h3 className="text-xl font-bold">Cuéntanos sobre tu carrera</h3>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                    <div>
-                                        <label className="block text-sm font-medium mb-2">Carrera Profesional</label>
-                                        <input
-                                            name="career"
-                                            value={formData.career}
-                                            onChange={handleChange}
-                                            className="w-full rounded-lg border px-4 py-3 focus:border-secondary-blue focus:ring-1 focus:ring-secondary-blue"
-                                            placeholder="Ej. Ingeniería Civil"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium mb-2">Universidad</label>
-                                        <input
-                                            name="university"
-                                            value={formData.university}
-                                            onChange={handleChange}
-                                            className="w-full rounded-lg border px-4 py-3 focus:border-secondary-blue focus:ring-1 focus:ring-secondary-blue"
-                                            placeholder="Ej. UNJBG"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        )}
+                            <h1 className="text-5xl font-black text-navy-text dark:text-white">
+                                Calcula tu fecha de <span className="text-primary-blue">graduación</span>
+                            </h1>
 
-                        {/* Step 2 */}
-                        {step === 2 && (
-                            <div className="flex flex-col gap-6">
-                                <h3 className="text-xl font-bold">¿Qué tipo de investigación planeas?</h3>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    {[
-                                        { value: 'cuantitativa', label: 'Cuantitativa', desc: 'Datos y estadísticas', icon: 'analytics' },
-                                        { value: 'cualitativa', label: 'Cualitativa', desc: 'Entrevistas y análisis', icon: 'psychology' },
-                                    ].map((type) => (
-                                        <label key={type.value} className="cursor-pointer">
-                                            <input
-                                                type="radio"
-                                                name="researchType"
-                                                value={type.value}
-                                                checked={formData.researchType === type.value}
-                                                onChange={handleChange}
-                                                className="sr-only peer"
-                                            />
-                                            <div className="rounded-xl border p-4 peer-checked:border-secondary-blue peer-checked:bg-secondary-blue/10 hover:border-secondary-blue transition">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="size-10 rounded-full bg-blue-100 flex items-center justify-center">
-                                                        <span className="material-symbols-outlined text-blue-600">{type.icon}</span>
-                                                    </div>
-                                                    <div>
-                                                        <span className="block font-bold">{type.label}</span>
-                                                        <span className="text-xs text-gray-600">{type.desc}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Step 3 */}
-                        {step === 3 && (
-                            <div className="flex flex-col gap-6">
-                                <h3 className="text-xl font-bold">Situación actual de tu tesis</h3>
-
-                                <div>
-                                    <label className="block text-sm font-medium mb-2">¿En qué etapa estás?</label>
-                                    <select
-                                        name="currentStage"
-                                        value={formData.currentStage}
-                                        onChange={handleChange}
-                                        className="w-full rounded-lg border px-4 py-3 focus:border-secondary-blue focus:ring-1 focus:ring-secondary-blue"
-                                    >
-                                        <option value="">Selecciona tu etapa</option>
-                                        <option value="tema">Definiendo tema</option>
-                                        <option value="marco">Marco teórico en progreso</option>
-                                        <option value="campo">Trabajo de campo</option>
-                                        <option value="redaccion">Redacción final</option>
-                                    </select>
-                                </div>
-
-                                <div>
-                                    <label className="block text-sm font-medium mb-2">¿Cuántas horas semanales puedes dedicar?</label>
-                                    <select
-                                        name="dedication"
-                                        value={formData.dedication}
-                                        onChange={handleChange}
-                                        className="w-full rounded-lg border px-4 py-3 focus:border-secondary-blue focus:ring-1 focus:ring-secondary-blue"
-                                    >
-                                        <option value="">Selecciona tu dedicación</option>
-                                        <option value="completo">Tiempo completo (30+ horas/semana)</option>
-                                        <option value="medio">Medio tiempo (15-30 horas/semana)</option>
-                                        <option value="parcial">Tiempo parcial (&lt; 15 horas/semana)</option>
-                                    </select>
-                                </div>
-
-                                <div className="bg-blue-50 p-4 rounded-lg mt-4">
-                                    <p className="text-sm text-gray-700">
-                                        <strong>Resumen:</strong> {formData.career} en {formData.university},{' '}
-                                        investigación {formData.researchType}
-                                    </p>
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Navigation */}
-                        <div className="mt-auto pt-6 border-t flex justify-between gap-4">
-                            {step > 1 && (
-                                <button
-                                    onClick={handlePrev}
-                                    className="flex items-center gap-2 px-6 py-3 rounded-lg border font-bold hover:bg-gray-100 transition"
-                                >
-                                    <span className="material-symbols-outlined">arrow_back</span>
-                                    Anterior
-                                </button>
-                            )}
-
-                            <button
-                                onClick={step === 3 ? handleCalculate : handleNext}
-                                className="ml-auto flex items-center gap-2 bg-secondary-blue px-8 py-3 rounded-lg font-bold hover:bg-blue-300 transition shadow-md"
-                            >
-                                <span>{step === 3 ? 'Calcular' : 'Siguiente'}</span>
-                                <span className="material-symbols-outlined">
-                                    {step === 3 ? 'calculate' : 'arrow_forward'}
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-
-                    {/* Right: Preview */}
-                    <div className="w-full md:w-[320px] bg-gray-50 dark:bg-slate-800 border-l p-6 flex flex-col gap-6">
-                        <div className="flex items-center gap-2">
-                            <span className="material-symbols-outlined">lightbulb</span>
-                            <h4 className="font-bold text-sm uppercase">Pre-visualización</h4>
-                        </div>
-
-                        <div className="bg-white rounded-xl p-4 border">
-                            <h5 className="text-xs font-bold text-gray-500 uppercase mb-3">Cronograma Estimado</h5>
-                            <div className="flex flex-col gap-4 relative">
-                                <div className="absolute left-[7px] top-2 bottom-2 w-[2px] bg-gray-200" />
-                                {[0, 1, 2].map((i) => (
-                                    <div key={i} className="flex gap-3 items-center" style={{ opacity: 1 - i * 0.3 }}>
-                                        <div className={`size-4 rounded-full border-2 ${i === 0 ? 'border-secondary-blue bg-white' : 'border-gray-300 bg-white'}`} />
-                                        <div className={`h-2 bg-gray-200 rounded ${i === 0 ? 'w-20' : i === 1 ? 'w-16' : 'w-24'}`} />
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="bg-secondary-blue/10 p-5 rounded-xl border border-secondary-blue/20">
-                            <h4 className="font-bold text-lg mb-2">¿Sabías que?</h4>
-                            <p className="text-sm text-gray-700 leading-relaxed">
-                                El 65% de los estudiantes se retrasan más de 6 meses por no elegir correctamente su metodología al inicio.
+                            <p className="text-lg text-slate-700 dark:text-gray-300">
+                                Descubre cuánto tiempo necesitas para terminar tu tesis con un cronograma personalizado.
                             </p>
                         </div>
 
-                        <div className="mt-auto">
-                            <p className="text-xs text-gray-600 mb-3 font-medium text-center">Más de 500 estudiantes asesorados</p>
-                            <div className="flex justify-center -space-x-3">
-                                {[1, 2, 3].map((i) => (
-                                    <div key={i} className="size-8 rounded-full border-2 border-white bg-gray-300" />
-                                ))}
-                                <div className="size-8 rounded-full border-2 border-white bg-secondary-blue text-white flex items-center justify-center text-[10px] font-bold">
-                                    +500
+                        {/* Right: Form */}
+                        <div className="relative">
+                            <div className="bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200 dark:border-slate-700 overflow-hidden">
+                                <div className="bg-primary-blue/5 dark:bg-primary-blue/10 px-6 py-4 border-b dark:border-slate-700">
+                                    <span className="text-sm font-bold text-primary-blue">Calculadora de Tesis</span>
+                                </div>
+
+                                <div className="p-8">
+                                    <div className="mb-8">
+                                        <div className="flex justify-between mb-2">
+                                            <p className="font-medium text-navy-text dark:text-white">Datos Académicos</p>
+                                            <span className="text-sm font-bold text-primary-blue">{progress}%</span>
+                                        </div>
+                                        <div className="h-2 w-full rounded-full bg-gray-200 dark:bg-slate-700 overflow-hidden">
+                                            <div
+                                                className="h-full rounded-full bg-primary-blue transition-all duration-500 ease-out"
+                                                style={{ width: `${progress}%` }}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <form className="space-y-6" onSubmit={handleSubmit}>
+                                        <div>
+                                            <label className="text-sm font-medium block mb-2 text-navy-text dark:text-white">Nivel Académico</label>
+                                            <div className="grid grid-cols-2 gap-2 p-1 bg-gray-100 dark:bg-slate-800 rounded-lg">
+                                                {['pregrado', 'posgrado'].map((level) => (
+                                                    <label key={level} className="cursor-pointer">
+                                                        <input
+                                                            type="radio"
+                                                            name="level"
+                                                            value={level}
+                                                            checked={formData.level === level}
+                                                            onChange={handleChange}
+                                                            className="sr-only peer"
+                                                        />
+                                                        <div className="text-center py-2.5 text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 peer-checked:bg-white peer-checked:text-primary-blue peer-checked:dark:bg-slate-800 capitalize transition-all">
+                                                            {level}
+                                                        </div>
+                                                    </label>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <div className="relative">
+                                            <label className="text-sm font-medium block mb-2 text-navy-text dark:text-white">
+                                                Campo de Estudio <span className="text-red-500">*</span>
+                                            </label>
+                                            <select
+                                                name="field"
+                                                value={formData.field}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full rounded-lg border border-gray-300 dark:border-slate-600 px-4 py-3 pr-10 text-gray-900 dark:text-white bg-white dark:bg-slate-800 focus:border-primary-blue focus:ring-1 focus:ring-primary-blue transition-all"
+                                            >
+                                                <option value="">Selecciona tu carrera</option>
+                                                <option value="ingenieria">Ingeniería y Arquitectura</option>
+                                                <option value="salud">Ciencias de la Salud</option>
+                                                <option value="derecho">Derecho y Ciencias Políticas</option>
+                                                <option value="educacion">Educación y Humanidades</option>
+                                                <option value="negocios">Administración y Negocios</option>
+                                            </select>
+                                            {isFieldComplete && (
+                                                <span className="absolute right-3 top-11 text-green-500 animate-in fade-in zoom-in duration-300">
+                                                    <span className="material-symbols-outlined">check_circle</span>
+                                                </span>
+                                            )}
+                                        </div>
+
+                                        <div className="relative">
+                                            <label className="text-sm font-medium block mb-2 text-navy-text dark:text-white">
+                                                Fecha deseada <span className="text-red-500">*</span>
+                                            </label>
+                                            <input
+                                                type="date"
+                                                name="targetDate"
+                                                value={formData.targetDate}
+                                                onChange={handleChange}
+                                                required
+                                                min={new Date().toISOString().split('T')[0]}
+                                                className="w-full rounded-lg border border-gray-300 dark:border-slate-600 px-4 py-3 pr-10 text-gray-900 dark:text-white bg-white dark:bg-slate-800 focus:border-primary-blue focus:ring-1 focus:ring-primary-blue transition-all"
+                                            />
+                                            {isDateComplete && (
+                                                <span className="absolute right-3 top-11 text-green-500 animate-in fade-in zoom-in duration-300">
+                                                    <span className="material-symbols-outlined">check_circle</span>
+                                                </span>
+                                            )}
+                                            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 flex items-center gap-1">
+                                                <span className="material-symbols-outlined text-base">info</span>
+                                                Te diremos si esta fecha es realista.
+                                            </p>
+                                        </div>
+
+                                        <button
+                                            type="submit"
+                                            className="w-full flex items-center justify-center gap-2 bg-primary-blue text-white font-bold px-6 py-4 rounded-xl hover:bg-blue-600 hover:shadow-lg transition-all duration-300 group"
+                                        >
+                                            <span>Calcular Cronograma</span>
+                                            <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                {/* Results */}
-                {showResult && result && (
-                    <div id="results" className="w-full max-w-[960px] mt-16">
-                        <div className="text-center mb-12">
-                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 text-green-700 mb-4">
-                                <span className="material-symbols-outlined">celebration</span>
-                                <span className="font-bold">Cronograma Calculado</span>
-                            </div>
-
-                            <h2 className="text-3xl font-black mb-4">Tu Fecha Estimada de Graduación</h2>
-                            <p className="text-lg text-gray-600">{result.recommendation}</p>
-
-                            <div className="grid grid-cols-2 gap-6 mt-8">
-                                <div className="bg-white p-6 rounded-xl border">
-                                    <p className="text-sm text-gray-600 mb-2">Tiempo Estimado</p>
-                                    <p className="text-4xl font-black text-secondary-blue">{result.estimatedMonths} meses</p>
-                                </div>
-                                <div className="bg-white p-6 rounded-xl border">
-                                    <p className="text-sm text-gray-600 mb-2">Fecha de Graduación</p>
-                                    <p className="text-2xl font-black">{result.graduationDate}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="space-y-4">
-                            <h3 className="text-2xl font-bold">Hitos de tu Cronograma</h3>
-                            {result.milestones.map((milestone, i) => (
-                                <div key={i} className="bg-white p-4 rounded-xl border flex items-center gap-4">
-                                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-secondary-blue text-white font-bold">
-                                        {i + 1}
+                    {/* Results */}
+                    {showResult && result && (
+                        <div id="results" className="mt-16 animate-in fade-in slide-in-from-bottom duration-500">
+                            <div className="max-w-5xl mx-auto">
+                                <div className="text-center mb-12">
+                                    <div
+                                        className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4 animate-in zoom-in duration-500 ${result.isViable ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300' : 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300'
+                                            }`}
+                                    >
+                                        <span className="material-symbols-outlined">
+                                            {result.isViable ? 'check_circle' : 'warning'}
+                                        </span>
+                                        <span className="font-bold">
+                                            {result.isViable ? 'Fecha Viable' : 'Fecha Ajustada'}
+                                        </span>
                                     </div>
-                                    <div className="flex-1">
-                                        <h4 className="font-bold">{milestone.name}</h4>
-                                        <p className="text-sm text-gray-600">Duración: {milestone.duration}</p>
-                                    </div>
-                                    <div className="text-sm font-bold text-secondary-blue bg-secondary-blue/10 px-3 py-1 rounded-full">
-                                        Mes {milestone.startMonth === 0 ? 1 : milestone.startMonth}
+
+                                    <h2 className="text-3xl font-black mb-4 text-navy-text dark:text-white">Tu Cronograma Personalizado</h2>
+                                    <p className="text-lg text-gray-700 dark:text-gray-300">{result.recommendation}</p>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                                        <div className="bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm p-6 rounded-xl border border-gray-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
+                                            <p className="text-sm text-gray-700 dark:text-gray-400 mb-2 flex items-center justify-center gap-1">
+                                                <span className="material-symbols-outlined text-base text-primary-blue">schedule</span>
+                                                Duración Estimada
+                                            </p>
+                                            <p className="text-3xl font-black text-primary-blue">{result.totalMonths} meses</p>
+                                        </div>
+                                        <div className="bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm p-6 rounded-xl border border-gray-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
+                                            <p className="text-sm text-gray-700 dark:text-gray-400 mb-2 flex items-center justify-center gap-1">
+                                                <span className="material-symbols-outlined text-base text-secondary-blue">event</span>
+                                                Fecha Estimada
+                                            </p>
+                                            <p className="text-2xl font-black text-navy-text dark:text-white">{result.estimatedDate}</p>
+                                        </div>
+                                        <div className="bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm p-6 rounded-xl border border-gray-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
+                                            <p className="text-sm text-gray-700 dark:text-gray-400 mb-2 flex items-center justify-center gap-1">
+                                                <span className="material-symbols-outlined text-base text-primary-blue">school</span>
+                                                Nivel
+                                            </p>
+                                            <p className="text-2xl font-black capitalize text-navy-text dark:text-white">{formData.level}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            ))}
-                        </div>
 
-                        <div className="mt-12 bg-gradient-to-r from-primary-blue to-secondary-blue p-8 rounded-2xl text-center text-white">
-                            <h3 className="text-2xl font-bold mb-4">¿Listo para empezar?</h3>
-                            <p className="text-lg mb-6 opacity-90">Nuestros asesores pueden ayudarte en cada paso</p>
-                            <button className="bg-white text-primary-blue font-bold px-8 py-3 rounded-lg hover:bg-gray-100">
-                                Agendar Asesoría Gratuita
-                            </button>
-                        </div>
-                    </div>
-                )}
+                                <div className="space-y-6">
+                                    <h3 className="text-2xl font-bold text-navy-text dark:text-white mb-6">Fases de tu Tesis</h3>
+                                    <div className="relative">
+                                        {/* Timeline connector line */}
+                                        <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary-blue via-secondary-blue to-green-500 hidden md:block"></div>
 
-                {/* Features */}
-                <div className="w-full max-w-[960px] mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {[
-                        { icon: 'timer', title: 'Ahorra Tiempo', desc: 'Plan estructurado adaptado a tu ritmo' },
-                        { icon: 'verified', title: 'Diagnóstico Preciso', desc: 'Identifica cuellos de botella antes' },
-                        { icon: 'support_agent', title: 'Asesoría Experta', desc: 'Asesores especializados en tu carrera' },
-                    ].map((feature, i) => (
-                        <div key={i} className="flex flex-col items-center text-center gap-3 p-4">
-                            <div className={`size-12 rounded-full ${i === 0 ? 'bg-green-100 text-green-600' : i === 1 ? 'bg-blue-100 text-blue-600' : 'bg-purple-100 text-purple-600'} flex items-center justify-center`}>
-                                <span className="material-symbols-outlined text-2xl">{feature.icon}</span>
+                                        {result.phases.map((phase, i) => (
+                                            <div key={i} className="relative bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm p-6 rounded-xl border border-gray-200 dark:border-slate-700 mb-4 hover:shadow-lg transition-all duration-300 hover:border-primary-blue animate-in slide-in-from-left" style={{ animationDelay: `${i * 100}ms` }}>
+                                                <div className="flex gap-4">
+                                                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary-blue to-secondary-blue text-white font-bold shadow-lg relative z-10">
+                                                        <span className="material-symbols-outlined">{phase.icon}</span>
+                                                    </div>
+                                                    <div className="flex-1">
+                                                        <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4 gap-2">
+                                                            <h4 className="text-lg font-bold text-navy-text dark:text-white">{phase.name}</h4>
+                                                            <span className="text-sm font-bold text-primary-blue bg-primary-blue/10 dark:bg-primary-blue/20 px-3 py-1 rounded-full w-fit">
+                                                                {phase.duration}
+                                                            </span>
+                                                        </div>
+                                                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                                            {phase.tasks.map((task, j) => (
+                                                                <li key={j} className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300">
+                                                                    <span className="material-symbols-outlined text-primary-blue text-base mt-0.5">
+                                                                        check_circle
+                                                                    </span>
+                                                                    {task}
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="mt-12 bg-gradient-to-r from-primary-blue to-secondary-blue p-8 rounded-2xl text-center text-white shadow-xl">
+                                    <span className="material-symbols-outlined text-5xl mb-4 inline-block">celebration</span>
+                                    <h3 className="text-2xl font-bold mb-4">¿Necesitas ayuda para cumplir este cronograma?</h3>
+                                    <p className="text-lg mb-6 opacity-90">
+                                        Nuestros asesores pueden ayudarte a optimizar cada fase
+                                    </p>
+                                    <button className="bg-white text-primary-blue font-bold px-8 py-3 rounded-lg hover:bg-gray-100 hover:shadow-lg transition-all">
+                                        Agendar Asesoría Gratuita
+                                    </button>
+                                </div>
                             </div>
-                            <h3 className="font-bold text-lg">{feature.title}</h3>
-                            <p className="text-sm text-gray-600">{feature.desc}</p>
                         </div>
-                    ))}
+                    )}
                 </div>
             </main>
         </div>
     );
 }
+

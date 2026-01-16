@@ -7,3 +7,4 @@ export default function CreativaTesisLayout({
 }) {
     return <>{children}</>;
 }
+

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function TesisPregradoPage() {
     return (
         <>
-            <section className="w-full px-4 md:px-20 py-16 bg-background-light dark:bg-background-dark">
+            <section className="w-full px-4 md:px-20 py-16 ">
                 <div className="max-w-[960px] mx-auto">
                     <h1 className="text-navy-text font-heading text-4xl md:text-5xl font-black mb-6 dark:text-white">
                         Tesis de pregrado: asesoría paso a paso
@@ -65,7 +65,7 @@ export default function TesisPregradoPage() {
                         </div>
 
                         <div className="flex flex-col gap-6">
-                            <div className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                            <div className="bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
                                 <h3 className="text-navy-text dark:text-white font-heading text-xl font-bold mb-4">
                                     ¿Qué incluye?
                                 </h3>
@@ -108,3 +108,4 @@ export default function TesisPregradoPage() {
         </>
     );
 }
+

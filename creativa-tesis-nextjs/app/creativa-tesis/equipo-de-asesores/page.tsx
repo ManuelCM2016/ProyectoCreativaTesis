@@ -12,7 +12,7 @@ export default async function EquipoDeAsesoresPage() {
     const advisors = await getAdvisors();
 
     return (
-        <div className="w-full px-4 md:px-20 py-16 bg-background-light dark:bg-background-dark">
+        <div className="w-full px-4 md:px-20 py-16 ">
             <div className="max-w-[1024px] mx-auto">
                 <div className="text-center mb-12">
                     <h1 className="text-navy-text font-heading text-4xl md:text-5xl font-black mb-4 dark:text-white">
@@ -29,7 +29,7 @@ export default async function EquipoDeAsesoresPage() {
                         {advisors.map((advisor: any) => (
                             <div
                                 key={advisor._id}
-                                className="bg-white dark:bg-slate-900 rounded-xl shadow-lg overflow-hidden border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-shadow"
+                                className="bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-shadow"
                             >
                                 {advisor.photo && (
                                     <div className="relative w-full aspect-square">
@@ -84,3 +84,4 @@ export default async function EquipoDeAsesoresPage() {
         </div>
     );
 }
+

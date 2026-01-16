@@ -52,7 +52,7 @@ export default function AboutPage() {
     return (
         <>
             {/* Hero Section */}
-            <section className="w-full px-4 md:px-20 py-16 bg-background-light dark:bg-background-dark">
+            <section className="w-full px-4 md:px-20 py-16 ">
                 <div className="max-w-[960px] mx-auto flex flex-col md:flex-row gap-12 items-center">
                     <div className="flex-1 flex flex-col gap-6">
                         <Badge>Nuestra Historia</Badge>
@@ -89,7 +89,7 @@ export default function AboutPage() {
             </section>
 
             {/* Mission & Vision Cards */}
-            <section className="w-full px-4 md:px-20 py-12 bg-white dark:bg-slate-900">
+            <section className="w-full px-4 md:px-20 py-12 bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm">
                 <div className="max-w-[1024px] mx-auto">
                     <div className="flex flex-col items-center text-center mb-12">
                         <h2 className="text-navy-text font-heading text-3xl font-bold mb-4 dark:text-white">
@@ -245,3 +245,4 @@ export default function AboutPage() {
         </>
     );
 }
+

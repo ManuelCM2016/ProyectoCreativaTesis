@@ -194,7 +194,7 @@ export default function CommunityPage() {
             </header>
 
             {/* Features Section */}
-            <section className="py-20 bg-white dark:bg-slate-900 rounded-t-[3rem] shadow-[0_-20px_40px_rgba(0,0,0,0.05)] relative z-10">
+            <section className="py-20 bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm rounded-t-[3rem] shadow-[0_-20px_40px_rgba(0,0,0,0.05)] relative z-10">
                 <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <h2 className="text-navy-text dark:text-white text-3xl md:text-4xl font-black mb-4 font-heading">
@@ -311,3 +311,4 @@ export default function CommunityPage() {
         </div>
     );
 }
+
