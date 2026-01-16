@@ -1,6 +1,0 @@
-{
-    "buildCommand": "cd creativa-tesis-nextjs && npm run build",
-    "outputDirectory": "creativa-tesis-nextjs/.next",
-    "installCommand": "cd creativa-tesis-nextjs && npm install",
-    "framework": "nextjs"
-}
