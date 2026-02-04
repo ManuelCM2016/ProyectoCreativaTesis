@@ -33,6 +33,9 @@ const config: Config = {
                 lg: '0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.07)',
                 xl: '0 20px 25px rgba(0, 0, 0, 0.15), 0 8px 10px rgba(0, 0, 0, 0.08)',
             },
+            animation: {
+                'spin-slow': 'spin 8s linear infinite',
+            },
         },
     },
     plugins: [require('@tailwindcss/forms')],

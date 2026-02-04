@@ -1,30 +1,12 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import Badge from '@/components/ui/Badge';
+import { getSuccessCases } from '@/lib/sanity/queries';
 
-export default function TestimonialsSection() {
-    const testimonials = [
-        {
-            name: 'Juan A.',
-            institution: 'Universidad XYZ',
-            avatar:
-                'https://lh3.googleusercontent.com/aida-public/AB6AXuA9Pd2ROzmjw6aqmF4qElDRsOFn7T9qAG2qSnsU8OxPHFQ7-xEmZ8qgPTJ-7dasHa6jGQX17V_Kgx2q9wRfGDQ4oisUVKHGqkokeRa88p7f3lFShodR6uyFnkSSYh9PqgLoBCX_z7CNUMKnmyTy7ZQ5dz92zGcAN57Ehis1Nl8M4t2dI-W2u7TCTS4zSn_LUsjF4Zn43wSqP0-i6DJBQwu8h5d5P4v94KBTThqcPTa5LxNUcWXKsA8dF7x4xZEBHTPUhbfk49KYk_I',
-            quote: 'La asesoría de Creativa Tesis fue clave. Logré terminar mi tesis a tiempo y con una calidad que nunca imaginé.',
-        },
-        {
-            name: 'María G.',
-            institution: 'Facultad de Educación',
-            avatar:
-                'https://lh3.googleusercontent.com/aida-public/AB6AXuCtE9aHtVQFSDeO8wanMhkYyJbHWicMqnfV4V4oZM-MxYFb3wxa7iNQPxeBVywZDIoNVIrLNVX11UNimahDxtjl-rZgIpfJtJ3PpSuwgJZyWjNew8amlbWsQ1SmTCt-t8lEEZHxlR-C0ULWD_upB6Vxme34zJfw7uAetbhwiBXV8sG-EpPW2O81AAYb85zEZls57xaUxleZ4qE-2vn3x3D-X8uGnEDaUN54LM-8LsOjAH2j2IgLABLYSHpIG_9lDeg98H6nNeWKkfs',
-            quote: 'Su enfoque paso a paso hizo que el proceso fuera mucho menos estresante. ¡Altamente recomendados!',
-        },
-        {
-            name: 'Roberto P.',
-            institution: 'Ingeniería de Sistemas',
-            avatar:
-                'https://lh3.googleusercontent.com/aida-public/AB6AXuCbUmwVEeaULq2ePYZJizK-oM1LiU3HDAEvw2IgXvdNF3g1Y-h-M1StAR1GvyNY1rIJLdUXnZdZunVaSGo7R-xwBHLgJ3gV_pAz6UtMDtNQiXJJOQwixyHeTtpc6X5qk7r45PKwCwdy7bPcz3WRWn5d022K1zz11y1Q0jf1hHKQf574dpO01ieURb7Rbtz0YHT4QccF1ygmR-zrHzqfCZiLdfaa8n1xtpGkZGJEmF9WocjUBG-LoOPIYPEU0BrVj_yqJfuiPKfTXDs',
-            quote: 'Profesionales y empáticos. Me ayudaron a estructurar mis ideas y a presentar un trabajo impecable.',
-        },
-    ];
+export default async function TestimonialsSection() {
+    // Fetch success cases from Sanity CMS and limit to 5
+    const allCases = await getSuccessCases();
+    const testimonials = allCases.slice(0, 5);
 
     return (
         <section className="py-16 lg:py-24 bg-background-light dark:bg-background-dark" id="testimonios">
@@ -41,32 +23,61 @@ export default function TestimonialsSection() {
 
                 <div className="relative w-full overflow-hidden">
                     <div className="flex space-x-8 snap-x snap-mandatory overflow-x-auto pb-4 scrollbar-hide lg:grid lg:grid-cols-3 lg:space-x-0 lg:gap-8">
-                        {testimonials.map((testimonial, index) => (
-                            <div
-                                key={index}
-                                className="min-w-[85%] sm:min-w-[calc(50%-1rem)] lg:min-w-0 snap-center flex-shrink-0 bg-light-grey-bg p-8 rounded-lg shadow-md dark:bg-slate-800 border border-slate-100 dark:border-slate-700"
-                            >
-                                <div className="flex items-center gap-3 mb-4">
-                                    <Image
-                                        alt={`Avatar ${testimonial.name}`}
-                                        className="h-12 w-12 rounded-full object-cover"
-                                        src={testimonial.avatar}
-                                        width={48}
-                                        height={48}
-                                    />
-                                    <div>
-                                        <p className="font-semibold text-navy-text dark:text-white">{testimonial.name}</p>
-                                        <p className="text-sm text-slate-500 dark:text-gray-400">
-                                            {testimonial.institution}
-                                        </p>
+                        {testimonials.length > 0 ? (
+                            testimonials.map((testimonial: any) => (
+                                <div
+                                    key={testimonial._id}
+                                    className="min-w-[85%] sm:min-w-[calc(50%-1rem)] lg:min-w-0 snap-center flex-shrink-0 bg-light-grey-bg p-8 rounded-lg shadow-md dark:bg-slate-800 border border-slate-100 dark:border-slate-700"
+                                >
+                                    <div className="flex items-center gap-3 mb-4">
+                                        {testimonial.avatar ? (
+                                            <Image
+                                                alt={`Avatar ${testimonial.personName}`}
+                                                className="h-12 w-12 rounded-full object-cover"
+                                                src={testimonial.avatar}
+                                                width={48}
+                                                height={48}
+                                            />
+                                        ) : (
+                                            <div className="h-12 w-12 rounded-full bg-primary-blue/20 flex items-center justify-center">
+                                                <span className="material-symbols-outlined text-primary-blue">
+                                                    person
+                                                </span>
+                                            </div>
+                                        )}
+                                        <div>
+                                            <p className="font-semibold text-navy-text dark:text-white">
+                                                {testimonial.personName || 'Estudiante'}
+                                            </p>
+                                            <p className="text-sm text-slate-500 dark:text-gray-400">
+                                                {testimonial.career || testimonial.university || 'Universidad'}
+                                            </p>
+                                        </div>
                                     </div>
+                                    <p className="text-lg italic text-slate-700 dark:text-gray-300">
+                                        &ldquo;{testimonial.quote || testimonial.title}&rdquo;
+                                    </p>
                                 </div>
-                                <p className="text-lg italic text-slate-700 dark:text-gray-300">
-                                    &ldquo;{testimonial.quote}&rdquo;
+                            ))
+                        ) : (
+                            <div className="col-span-3 text-center py-12">
+                                <p className="text-slate-500 dark:text-gray-400">
+                                    No hay testimonios disponibles en este momento.
                                 </p>
                             </div>
-                        ))}
+                        )}
                     </div>
+                </div>
+
+                {/* CTA Button */}
+                <div className="mt-10 text-center">
+                    <Link
+                        href="/casos-exito"
+                        className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-blue to-secondary-blue text-white rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+                    >
+                        <span>Ver Todos los Casos de Éxito</span>
+                        <span className="material-symbols-outlined">arrow_forward</span>
+                    </Link>
                 </div>
             </div>
         </section>

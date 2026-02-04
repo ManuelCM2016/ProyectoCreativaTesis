@@ -48,13 +48,13 @@ export default function RootLayout({
           className="fixed inset-0 z-0 pointer-events-none"
           style={{
             background: `linear-gradient(45deg, 
-              #E6F4FC 0%, 
-              #D4EBFA 20%, 
-              #F0F7FB 40%, 
-              #E3F0F7 60%, 
-              #D1E4EF 80%, 
-              #C9DFF0 100%)`,
-            opacity: 0.75
+              #C1E2F7 0%, 
+              #95c2e6 20%, q tq t
+              #7AB5DD 40%, 
+              #5FA7D4 60%, 
+              #4A8FC0 80%, 
+              #3D7BA8 100%)`,
+            opacity: 102
           }}
         />
 

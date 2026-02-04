@@ -67,21 +67,63 @@ export default function Footer() {
                     {/* Contact Section */}
                     <div className="flex flex-col gap-4">
                         <h4 className="font-bold font-heading text-lg text-navy-text dark:text-white">
-                            Contáctanos
+                            Nuestras Oficinas
                         </h4>
+
+                        {/* Sede Principal */}
                         <div className="flex flex-col gap-2 text-sm text-slate-600 font-body dark:text-gray-400">
-                            <a href="mailto:contacto@creativatesis.com" className="hover:text-primary-blue flex items-center gap-2">
+                            <div className="flex items-start gap-2">
+                                <span className="material-symbols-outlined text-[18px] text-primary-blue dark:text-secondary-blue mt-0.5">
+                                    location_on
+                                </span>
+                                <div>
+                                    <p className="font-semibold text-navy-text dark:text-white mb-1">Sede Principal</p>
+                                    <p className="text-xs">Central Boulevard / 2º Piso<br />Av. San Martín 561 - Tacna</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Próximas Sedes */}
+                        <div className="flex flex-col gap-2 text-sm text-slate-600 font-body dark:text-gray-400">
+                            <div className="flex items-start gap-2">
+                                <span className="material-symbols-outlined text-[18px] text-primary-blue/60 dark:text-secondary-blue/60 mt-0.5">
+                                    near_me
+                                </span>
+                                <div>
+                                    <p className="font-semibold text-navy-text dark:text-white mb-1">Próximas Sedes</p>
+                                    <p className="text-xs">Próximamente en Lima, Arequipa, y demás ciudades.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Contact Info */}
+                        <div className="flex flex-col gap-2 text-sm">
+                            <a href="mailto:informes@creativatesis.pe" className="hover:text-primary-blue flex items-center gap-2 text-slate-600 dark:text-gray-400">
                                 <span className="material-symbols-outlined text-[18px]">mail</span>
-                                contacto@creativatesis.com
+                                informes@creativatesis.pe
                             </a>
-                            <span className="flex items-center gap-2">
-                                <span className="material-symbols-outlined text-[18px]">location_on</span>
-                                Oficina central: Tacna, Perú
-                            </span>
-                            <span className="flex items-center gap-2">
+                            <a href="tel:918677900" className="hover:text-primary-blue flex items-center gap-2 text-slate-600 dark:text-gray-400">
+                                <span className="material-symbols-outlined text-[18px]">call</span>
+                                918 677 900
+                            </a>
+                            <span className="flex items-center gap-2 text-slate-600 dark:text-gray-400">
                                 <span className="material-symbols-outlined text-[18px]">badge</span>
                                 RUC: 20123456789
                             </span>
+                        </div>
+
+                        {/* Google Maps - Small Version */}
+                        <div className="mt-2 w-full rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3794.2737505325044!2d-70.25159328895616!3d-18.01249488140356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915acf88047e8ffd%3A0x3e08e2cd07921de1!2sCreativa%20Tesis!5e0!3m2!1ses-419!2spe!4v1770222887005!5m2!1ses-419!2spe"
+                                width="100%"
+                                height="180"
+                                style={{ border: 0 }}
+                                allowFullScreen
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                className="w-full"
+                            ></iframe>
                         </div>
 
                         <h4 className="font-bold font-heading text-lg text-navy-text mt-4 dark:text-white">

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 
 interface NavLink {
@@ -37,12 +38,10 @@ export default function Navbar() {
         {
             label: 'Servicios',
             items: [
-                { href: '/servicios/tesis-pregrado', label: 'Tesis de pregrado' },
-                { href: '/servicios/tesis-postgrado', label: 'Tesis postgrado' },
-                { href: '/servicios/tesis-maestria', label: 'Tesis de maestría' },
-                { href: '/servicios/tesis-doctoral', label: 'Tesis doctoral' },
-                { href: '/servicios/asesoria-especializada', label: 'Asesoría Especializada' },
-                { href: '/servicios/otros-servicios', label: 'Otros servicios' },
+                { href: '/servicios', label: 'Ver todos los servicios' },
+                { href: '/servicios#pregrado', label: 'Servicios de Pregrado' },
+                { href: '/servicios#postgrado', label: 'Servicios de Postgrado' },
+                { href: '/servicios#estadisticos', label: 'Análisis Estadístico' },
             ],
         },
         { href: '/blog', label: 'Blog y Recursos' },
@@ -68,13 +67,19 @@ export default function Navbar() {
     return (
         <header className="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-light-grey-bg bg-background-light/95 backdrop-blur-sm px-6 py-4 lg:px-10 xl:px-20 dark:bg-background-dark/95 dark:border-gray-800 shadow-subtle">
             <div className="flex items-center gap-4 text-navy-text dark:text-white">
-                <Link href="/" className="flex items-center gap-4">
-                    <div className="flex items-center justify-center rounded-lg bg-primary-blue/10 p-2 text-primary-blue">
-                        <span className="material-symbols-outlined">school</span>
+                <Link href="/" className="flex items-center">
+                    <div className="relative h-12 w-auto">
+                        <Image
+                            src="/logo-creativa-tesis.png"
+                            alt="Creativa Tesis"
+                            width={100}
+                            height={48}
+                            className="object-contain"
+                            priority
+                            quality={100}
+                            unoptimized
+                        />
                     </div>
-                    <h2 className="text-navy-text text-lg font-bold leading-tight tracking-[-0.015em] dark:text-white">
-                        Creativa Tesis
-                    </h2>
                 </Link>
             </div>
 

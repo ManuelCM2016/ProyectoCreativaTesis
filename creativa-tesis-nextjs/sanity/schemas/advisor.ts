@@ -36,6 +36,60 @@ export default {
             of: [{ type: 'string' }],
         },
         {
+            name: 'yearsOfExperience',
+            title: 'Años de Experiencia',
+            type: 'number',
+            validation: (Rule: any) => Rule.min(0),
+        },
+        {
+            name: 'corporateEmail',
+            title: 'Email Corporativo',
+            type: 'string',
+            validation: (Rule: any) => Rule.email(),
+        },
+        {
+            name: 'socialMedia',
+            title: 'Redes Sociales',
+            type: 'array',
+            of: [
+                {
+                    type: 'object',
+                    fields: [
+                        {
+                            name: 'platform',
+                            title: 'Plataforma',
+                            type: 'string',
+                            options: {
+                                list: [
+                                    { title: 'LinkedIn', value: 'linkedin' },
+                                    { title: 'Twitter', value: 'twitter' },
+                                    { title: 'Instagram', value: 'instagram' },
+                                    { title: 'Facebook', value: 'facebook' },
+                                ],
+                            },
+                        },
+                        {
+                            name: 'url',
+                            title: 'URL',
+                            type: 'url',
+                        },
+                    ],
+                    preview: {
+                        select: {
+                            platform: 'platform',
+                            url: 'url',
+                        },
+                        prepare({ platform, url }: any) {
+                            return {
+                                title: platform,
+                                subtitle: url,
+                            };
+                        },
+                    },
+                },
+            ],
+        },
+        {
             name: 'order',
             title: 'Orden',
             type: 'number',

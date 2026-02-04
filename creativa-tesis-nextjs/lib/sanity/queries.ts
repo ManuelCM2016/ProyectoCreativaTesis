@@ -11,6 +11,9 @@ export const getAdvisors = async () => {
         bio,
         "photo": photo.asset->url,
         specialties,
+        yearsOfExperience,
+        corporateEmail,
+        socialMedia,
         slug
       }`
         );
@@ -137,3 +140,44 @@ export const getSuccessCaseBySlug = async (slug: string) => {
         return null;
     }
 };
+
+// Video Queries
+export const getVideos = async () => {
+    try {
+        return await client.fetch(
+            `*[_type == "video"] | order(order asc, _createdAt desc) {
+        _id,
+        title,
+        description,
+        platform,
+        videoUrl,
+        orientation,
+        "thumbnail": thumbnail.asset->url,
+        featured
+      }`
+        );
+    } catch (error) {
+        console.error('Error fetching videos:', error);
+        return [];
+    }
+};
+
+export const getFeaturedVideos = async () => {
+    try {
+        return await client.fetch(
+            `*[_type == "video" && featured == true] | order(order asc) {
+        _id,
+        title,
+        description,
+        platform,
+        videoUrl,
+        orientation,
+        "thumbnail": thumbnail.asset->url
+      }`
+        );
+    } catch (error) {
+        console.error('Error fetching featured videos:', error);
+        return [];
+    }
+};
+

@@ -6,33 +6,64 @@ import Link from 'next/link';
 import { useReducedMotion } from '@/lib/hooks/useReducedMotion';
 
 export default function Hero() {
-    const [mounted, setMounted] = useState(true);
+    const [mounted, setMounted] = useState(false);
     const shouldReduceMotion = useReducedMotion();
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#95C2EC] to-[#345672]">
-            {/* Animated Particles Background - Expanding from center */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="particles-container">
-                    {[...Array(40)].map((_, i) => {
-                        const angle = (i / 40) * Math.PI * 2;
-                        return (
-                            <div
-                                key={i}
-                                className="particle"
-                                style={{
-                                    left: '50%',
-                                    top: '50%',
-                                    animationDelay: `${Math.random() * 2}s`,
-                                    animationDuration: `${4 + Math.random() * 4}s`,
-                                    '--angle': `${angle}rad`,
-                                    '--distance': `${300 + Math.random() * 200}px`,
-                                } as React.CSSProperties}
-                            />
-                        );
-                    })}
+            {/* Animated Text Labels Background - Only render after mounted */}
+            {mounted && (
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <div className="text-labels-container">
+                        {/* PREGRADO - Lado Derecho */}
+                        {['PREGRADO', 'Institutos', 'Escuelas Pedagógicas', 'Bachiller', 'Titulación'].map((text, i, arr) => {
+                            const baseAngle = -Math.PI / 4 + (i / (arr.length - 1)) * (Math.PI / 2);
+                            const isTitle = text === 'PREGRADO';
+                            return (
+                                <div
+                                    key={`pregrado-${i}`}
+                                    className={`floating-text ${isTitle ? 'title-text' : 'subtitle-text'}`}
+                                    style={{
+                                        left: '50%',
+                                        top: '50%',
+                                        animationDelay: `${i * 0.3}s`,
+                                        animationDuration: `${6 + i * 0.5}s`,
+                                        '--angle': `${baseAngle}rad`,
+                                        '--distance': `${isTitle ? '30vw' : `${32 + i * 2}vw`}`,
+                                    } as React.CSSProperties}
+                                >
+                                    {text}
+                                </div>
+                            );
+                        })}
+                        {/* POSTGRADO - Lado Izquierdo */}
+                        {['POSTGRADO', 'Segunda Especialidad', 'Maestría', 'Doctorado'].map((text, i, arr) => {
+                            const baseAngle = (3 * Math.PI / 4) + (i / (arr.length - 1)) * (Math.PI / 2);
+                            const isTitle = text === 'POSTGRADO';
+                            return (
+                                <div
+                                    key={`postgrado-${i}`}
+                                    className={`floating-text ${isTitle ? 'title-text' : 'subtitle-text'}`}
+                                    style={{
+                                        left: '50%',
+                                        top: '50%',
+                                        animationDelay: `${i * 0.3 + 0.15}s`,
+                                        animationDuration: `${6 + i * 0.5}s`,
+                                        '--angle': `${baseAngle}rad`,
+                                        '--distance': `${isTitle ? '30vw' : `${32 + i * 2}vw`}`,
+                                    } as React.CSSProperties}
+                                >
+                                    {text}
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
-            </div>
+            )}
 
             {/* Main Content */}
             <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -162,30 +193,46 @@ export default function Hero() {
 
             {/* CSS Animations & Styles */}
             <style jsx>{`
-                /* Radial Particle Animation - Expanding from center - 50% BIGGER */}
-                .particles-container {
+                /* Floating Text Labels Animation - Expanding from center */
+                .text-labels-container {
                     position: absolute;
                     width: 100%;
                     height: 100%;
                 }
 
-                .particle {
+                .floating-text {
                     position: absolute;
-                    width: 7px;  /* 50% bigger: was 4-7px, now static 7px base */
-                    height: 7px;
-                    background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 100%);
-                    border-radius: 50%;
-                    animation: expandFromCenter infinite ease-out;
-                    box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+                    font-family: 'Questrial', 'Montserrat', sans-serif;
+                    color: rgba(255, 255, 255, 0.5);
+                    animation: expandTextFromCenter infinite ease-in-out;
                     transform: translate(-50%, -50%);
+                    white-space: nowrap;
+                    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+                    pointer-events: none;
+                    user-select: none;
                 }
 
-                @keyframes expandFromCenter {
+                .title-text {
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    letter-spacing: 0.15em;
+                    color: rgba(255, 255, 255, 0.65);
+                    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+                }
+
+                .subtitle-text {
+                    font-size: 1rem;
+                    font-weight: 500;
+                    letter-spacing: 0.08em;
+                    color: rgba(255, 255, 255, 0.5);
+                }
+
+                @keyframes expandTextFromCenter {
                     0% {
                         transform: translate(-50%, -50%) 
                                    translate(0, 0) 
-                                   scale(0.5);
-                        opacity: 0.3;
+                                   scale(0.6);
+                        opacity: 0.15;
                     }
                     50% {
                         transform: translate(-50%, -50%) 
@@ -193,14 +240,14 @@ export default function Hero() {
                                        calc(cos(var(--angle)) * var(--distance)), 
                                        calc(sin(var(--angle)) * var(--distance))
                                    ) 
-                                   scale(1.2);
-                        opacity: 0.7;
+                                   scale(1.1);
+                        opacity: 0.85;
                     }
                     100% {
                         transform: translate(-50%, -50%) 
                                    translate(0, 0) 
-                                   scale(0.5);
-                        opacity: 0.3;
+                                   scale(0.6);
+                        opacity: 0.15;
                     }
                 }
 
@@ -318,9 +365,11 @@ export default function Hero() {
 
                 /* Responsive adjustments */
                 @media (max-width: 640px) {
-                    .particle {
-                        width: 5px;
-                        height: 5px;
+                    .title-text {
+                        font-size: 0.9rem;
+                    }
+                    .subtitle-text {
+                        font-size: 0.7rem;
                     }
                 }
             `}</style>

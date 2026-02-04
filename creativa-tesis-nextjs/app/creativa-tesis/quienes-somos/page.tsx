@@ -63,8 +63,10 @@ export default function QuienesSomosPage() {
 
                         <p className="text-slate-600 font-body text-lg leading-relaxed dark:text-gray-300">
                             Somos Creativa Tesis, una consultora dedicada a transformar la experiencia de
-                            investigación académica. Con más de 500 tesis aprobadas, somos tu aliado estratégico
+                            investigación académica. Con más de 100 tesis aprobadas, somos tu aliado estratégico
                             para alcanzar la titulación.
+                            <br /> <br />
+                            <p>“Empatizamos y valoramos tu perspectiva.”</p>
                         </p>
 
                         <div className="flex gap-4 pt-2">
@@ -117,8 +119,7 @@ export default function QuienesSomosPage() {
                                 </div>
                                 <h3 className="text-white font-heading text-2xl font-bold mb-3">Nuestra Misión</h3>
                                 <p className="text-white/90 font-body text-base leading-relaxed">
-                                    Facilitar el camino a la titulación mediante asesoría personalizada, eliminando
-                                    barreras metodológicas y garantizando la rigurosidad académica en cada investigación.
+                                    Acompañar a estudiantes y profesionales en su proceso de investigación académica, ofreciendo orientación especializada, ética y personalizada, empatizando y valorando tu perspectiva en cada etapa.
                                 </p>
                             </div>
                         </div>
@@ -138,9 +139,7 @@ export default function QuienesSomosPage() {
                                 </div>
                                 <h3 className="text-white font-heading text-2xl font-bold mb-3">Nuestra Visión</h3>
                                 <p className="text-white/90 font-body text-base leading-relaxed">
-                                    Ser la consultora líder en el sur del Perú, reconocida por nuestra ética
-                                    inquebrantable, innovación en métodos de estudio y resultados garantizados para
-                                    nuestros tesistas.
+                                    Ser un referente en acompañamiento académico a nivel regional y nacional, reconocidos por la calidad, el compromiso y un enfoque humano que empatiza y valora la perspectiva de cada investigador.
                                 </p>
                             </div>
                         </div>

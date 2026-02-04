@@ -131,8 +131,8 @@ export default function ContactForm() {
                                 value={formData.name}
                                 onChange={handleChange}
                                 className={`flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-600 dark:text-white font-body focus:outline-0 focus:ring-2 focus:ring-primary-blue/20 border ${errors.name
-                                        ? 'border-red-500'
-                                        : 'border-slate-300 dark:border-slate-600'
+                                    ? 'border-red-500'
+                                    : 'border-slate-300 dark:border-slate-600'
                                     } bg-white dark:bg-slate-800 focus:border-primary-blue h-12 placeholder:text-gray-400 px-4 text-base transition-all`}
                                 placeholder="Juan Pérez"
                             />
@@ -153,8 +153,8 @@ export default function ContactForm() {
                                     value={formData.email}
                                     onChange={handleChange}
                                     className={`flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-600 dark:text-white font-body focus:outline-0 focus:ring-2 focus:ring-primary-blue/20 border ${errors.email
-                                            ? 'border-red-500'
-                                            : 'border-slate-300 dark:border-slate-600'
+                                        ? 'border-red-500'
+                                        : 'border-slate-300 dark:border-slate-600'
                                         } bg-white dark:bg-slate-800 focus:border-primary-blue h-12 placeholder:text-gray-400 px-4 text-base transition-all`}
                                     placeholder="juan@ejemplo.com"
                                 />
@@ -173,8 +173,8 @@ export default function ContactForm() {
                                     value={formData.phone}
                                     onChange={handleChange}
                                     className={`flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-600 dark:text-white font-body focus:outline-0 focus:ring-2 focus:ring-primary-blue/20 border ${errors.phone
-                                            ? 'border-red-500'
-                                            : 'border-slate-300 dark:border-slate-600'
+                                        ? 'border-red-500'
+                                        : 'border-slate-300 dark:border-slate-600'
                                         } bg-white dark:bg-slate-800 focus:border-primary-blue h-12 placeholder:text-gray-400 px-4 text-base transition-all`}
                                     placeholder="918 677 900"
                                 />
@@ -209,8 +209,8 @@ export default function ContactForm() {
                                 value={formData.message}
                                 onChange={handleChange}
                                 className={`flex w-full min-w-0 flex-1 resize-none rounded-lg text-slate-600 dark:text-white font-body focus:outline-0 focus:ring-2 focus:ring-primary-blue/20 border ${errors.message
-                                        ? 'border-red-500'
-                                        : 'border-slate-300 dark:border-slate-600'
+                                    ? 'border-red-500'
+                                    : 'border-slate-300 dark:border-slate-600'
                                     } bg-white dark:bg-slate-800 focus:border-primary-blue min-h-[140px] placeholder:text-gray-400 p-4 text-base transition-all`}
                                 placeholder="Cuéntanos brevemente sobre tu tema de tesis o el problema que tienes..."
                             />
@@ -239,7 +239,7 @@ export default function ContactForm() {
                             Información de contacto
                         </h2>
 
-                        {/* Address */}
+                        {/* Sede Principal */}
                         <div className="flex items-start gap-4 p-4 rounded-xl bg-white dark:bg-slate-900 border border-transparent hover:border-secondary-blue transition-all shadow-sm group">
                             <div className="size-12 rounded-full bg-secondary-blue/20 flex items-center justify-center shrink-0 group-hover:bg-secondary-blue/40 transition-colors">
                                 <span className="material-symbols-outlined text-primary-blue dark:text-secondary-blue">
@@ -248,12 +248,29 @@ export default function ContactForm() {
                             </div>
                             <div className="flex flex-col">
                                 <p className="text-navy-text dark:text-white font-heading font-bold text-lg">
-                                    Visítanos
+                                    Sede Principal
                                 </p>
                                 <p className="text-slate-600 dark:text-gray-400 font-body text-sm leading-relaxed">
                                     Central Boulevard / 2º Piso
                                     <br />
                                     Av. San Martín 561 - Tacna
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Próximas Sedes */}
+                        <div className="flex items-start gap-4 p-4 rounded-xl bg-gradient-to-br from-primary-blue/5 to-secondary-blue/10 dark:from-primary-blue/10 dark:to-secondary-blue/20 border border-dashed border-primary-blue/30 dark:border-secondary-blue/30 shadow-sm">
+                            <div className="size-12 rounded-full bg-primary-blue/20 flex items-center justify-center shrink-0">
+                                <span className="material-symbols-outlined text-primary-blue dark:text-secondary-blue">
+                                    near_me
+                                </span>
+                            </div>
+                            <div className="flex flex-col">
+                                <p className="text-navy-text dark:text-white font-heading font-bold text-lg">
+                                    Próximas Sedes
+                                </p>
+                                <p className="text-slate-600 dark:text-gray-300 font-body text-sm leading-relaxed">
+                                    Próximamente en Lima, Arequipa, y demás ciudades.
                                 </p>
                             </div>
                         </div>
@@ -299,21 +316,32 @@ export default function ContactForm() {
                         </div>
                     </div>
 
-                    {/* Map Image */}
-                    <div className="relative w-full h-64 rounded-2xl overflow-hidden shadow-md border border-gray-200 dark:border-gray-700 group">
-                        <Image
-                            alt="Map showing location in Tacna city center"
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEwWZxBPVQw3-CHfCqYCkypBb9dXD6IeBzGtOq0eMn_lgZWMBzF4auydePlbOtqIEPySWWVKQ03vrqkjQAJiOufRw9Y9u_hV6qygZ2UAeZNMbIhBhGq7HaLrQ3dqZtN8AkFBhqKOrK3WTlkmamWk9N6NcaVo70d54aOWt0mNH5SFPRBumF8IDPZhyEyqqYeHtsk_CefM60aDKqhYMZX97xTZcMMeVl0F_gQ2Ne2C6wa6zfuxAO984f2eRHTBF1ScylBRr70S3JTR4"
-                            width={600}
-                            height={256}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-                            <div className="flex items-center gap-2 text-white">
-                                <span className="material-symbols-outlined text-secondary-blue">map</span>
-                                <span className="font-body font-medium text-sm">Ver en Google Maps</span>
-                            </div>
-                        </div>
+                    {/* Google Maps */}
+                    <div className="w-full rounded-2xl overflow-hidden shadow-md border border-gray-200 dark:border-gray-700">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3794.2737505325044!2d-70.25159328895616!3d-18.01249488140356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915acf88047e8ffd%3A0x3e08e2cd07921de1!2sCreativa%20Tesis!5e0!3m2!1ses-419!2spe!4v1770222887005!5m2!1ses-419!2spe"
+                            width="100%"
+                            height="300"
+                            style={{ border: 0 }}
+                            allowFullScreen
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                            className="w-full"
+                        ></iframe>
+                    </div>
+
+                    {/* 3D Map Link */}
+                    <div className="w-full text-center mt-3">
+                        <a
+                            href="https://maps.app.goo.gl/iBMg9pumLJYS763KA"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-primary-blue dark:text-secondary-blue hover:text-white hover:bg-primary-blue dark:hover:bg-secondary-blue border-2 border-primary-blue dark:border-secondary-blue rounded-lg transition-all duration-300 font-body"
+                        >
+                            <span className="material-symbols-outlined text-[20px]">3d_rotation</span>
+                            <span>Visualiza cómo ubicarnos</span>
+                            <span className="material-symbols-outlined text-[16px]">open_in_new</span>
+                        </a>
                     </div>
                 </div>
             </div>
