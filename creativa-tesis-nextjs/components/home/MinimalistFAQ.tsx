@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState, useCallback } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -188,7 +189,7 @@ export default function MinimalistFAQ() {
 
                     {/* ═══════ Left Column — Sticky Heading ═══════ */}
                     <div className="lg:col-span-4">
-                        <div className="lg:sticky lg:top-28">
+                        <div className="lg:sticky lg:top-29">
                             <div className="faq-heading opacity-0">
                                 <span
                                     className="inline-block rounded-full px-4 py-1.5 text-[10px] uppercase tracking-[0.25em] font-semibold bg-[#365571]/8 text-[#365571] ring-1 ring-[#365571]/12 mb-6"
@@ -208,6 +209,18 @@ export default function MinimalistFAQ() {
                                 >
                                     Las respuestas que necesitas para tomar la mejor decisión sobre tu proyecto de tesis.
                                 </p>
+
+                                {/* FAQ Image */}
+                                <div className="mt-5 relative rounded-2xl overflow-hidden ring-1 ring-[#141318]/5 shadow-subtle">
+                                    <Image
+                                        src="/images/creativa_preguntas.jpg"
+                                        alt="Equipo de Creativa Tesis resolviendo dudas"
+                                        width={600}
+                                        height={400}
+                                        className="w-full h-auto object-cover"
+                                        sizes="(max-width: 1024px) 100vw, 33vw"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>

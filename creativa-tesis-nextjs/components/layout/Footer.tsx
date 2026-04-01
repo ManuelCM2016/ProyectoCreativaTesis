@@ -179,7 +179,7 @@ export default function Footer() {
                             </a>
                             <span className="flex items-center gap-3 text-sm text-white/40">
                                 <span className="material-symbols-outlined text-[16px]">badge</span>
-                                RUC: 20123456789
+                                RUC: 20614671662
                             </span>
                         </div>
                     </div>

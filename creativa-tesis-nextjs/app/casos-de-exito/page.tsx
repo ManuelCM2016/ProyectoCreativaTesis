@@ -1,31 +1,38 @@
 import type { Metadata } from 'next';
-import { getSuccessCases } from '@/lib/sanity/queries';
-import SuccessCasesList from './SuccessCasesList';
+import { getChatTestimonials } from '@/lib/sanity/queries';
+import SuccessHero from '@/components/success/SuccessHero';
+import SuccessBeforeAfter from '@/components/success/SuccessBeforeAfter';
+import ChatShowcase from '@/components/home/ChatShowcase';
+import SuccessMarquee from '@/components/success/SuccessMarquee';
+import SuccessCTA from '@/components/success/SuccessCTA';
 
 export const metadata: Metadata = {
     title: 'Casos de Éxito - Creativa Tesis',
-    description:
-        'Conoce las historias de éxito de nuestros tesistas que lograron su titulación con nuestra asesoría.',
+    description: 'Historias reales de éxito académico en Tacna. Más de 500 tesis aprobadas de estudiantes de diversas universidades guiados por nuestra mentoría especializada.',
 };
 
-export default async function CasosDeExitoPage() {
-    const cases = await getSuccessCases();
+export const revalidate = 60; // ISR cache for one minute
+
+export default async function SuccessCasesPage() {
+    // Fetch live testimonials from Sanity (or fallback empty if not available)
+    const chatTestimonials = await getChatTestimonials().catch(() => []);
 
     return (
-        <div className="w-full px-4 md:px-20 py-16 ">
-            <div className="max-w-[1024px] mx-auto">
-                <div className="text-center mb-12">
-                    <h1 className="text-navy-text font-heading text-4xl md:text-5xl font-black mb-4 dark:text-white">
-                        Casos de Éxito
-                    </h1>
-                    <p className="text-slate-600 font-body text-lg max-w-2xl mx-auto dark:text-gray-300">
-                        Historias reales de tesistas que alcanzaron sus metas académicas con nuestro acompañamiento.
-                    </p>
-                </div>
-
-                <SuccessCasesList cases={cases} />
-            </div>
-        </div>
+        <main className="w-full flex-col flex overflow-hidden lg:pt-20">
+            {/* 1. Impact metrics hero */}
+            <SuccessHero />
+            
+            {/* 2. Empathic timeline transition */}
+            <SuccessBeforeAfter />
+            
+            {/* 3. The raw truth (Interactive iPhone Showcase) */}
+            <ChatShowcase testimonials={chatTestimonials} />
+            
+            {/* 4. Physical evidence / Marquee */}
+            <SuccessMarquee />
+            
+            {/* 5. Strong CTA */}
+            <SuccessCTA />
+        </main>
     );
 }
-

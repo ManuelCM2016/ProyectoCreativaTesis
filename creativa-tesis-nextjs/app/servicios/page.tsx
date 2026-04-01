@@ -11,7 +11,7 @@ const nivelesAcademicos = {
         subniveles: ['Institutos', 'Escuelas Pedagógicas', 'Bachiller', 'Titulación'],
         descripcion: 'Servicios de asesoría para estudiantes de pregrado en institutos, escuelas pedagógicas y universidades.',
         color: 'from-blue-500 to-blue-600',
-        imagen: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80',
+        imagen: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80',
     },
     postgrado: {
         titulo: 'POSTGRADO',

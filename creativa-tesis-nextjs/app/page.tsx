@@ -6,15 +6,19 @@ import ServicesAnimatedTabs from '@/components/home/ServicesAnimatedTabs';
 import GuaranteeBanner from '@/components/home/GuaranteeBanner';
 import InteractiveJourney from '@/components/home/InteractiveJourney';
 import MagneticEcosystem from '@/components/home/MagneticEcosystem';
-import TestimonialsMarquee from '@/components/home/TestimonialsMarquee';
+import ChatShowcase from '@/components/home/ChatShowcase';
 import MinimalistFAQ from '@/components/home/MinimalistFAQ';
 import CTASection from '@/components/home/CTASection';
 import CertificationsSection from '@/components/home/CertificationsSection';
-import { getHomeIntro } from '@/lib/sanity/queries';
+import { getHomeIntro, getChatTestimonials, getCertifications } from '@/lib/sanity/queries';
 
 export default async function Home() {
-  // Fetch home intro data from Sanity
-  const homeIntroData = await getHomeIntro();
+  // Fetch data from Sanity
+  const [homeIntroData, chatTestimonials, certifications] = await Promise.all([
+    getHomeIntro(),
+    getChatTestimonials(),
+    getCertifications(),
+  ]);
 
   return (
     <>
@@ -42,8 +46,8 @@ export default async function Home() {
       {/* 8. Ecosistema Magnético — Dark Bento */}
       <MagneticEcosystem />
 
-      {/* 9. Testimonios — Marquee infinito */}
-      <TestimonialsMarquee />
+      {/* 9. Chat Showcase — WhatsApp Screenshots con iPhone Mockup */}
+      <ChatShowcase testimonials={chatTestimonials} />
 
       {/* 10. FAQ — Acordeón minimalista */}
       <MinimalistFAQ />
@@ -51,8 +55,8 @@ export default async function Home() {
       {/* 11. CTA Final */}
       <CTASection />
 
-      {/* 12. Certificaciones */}
-      <CertificationsSection />
+      {/* 12. Certificaciones — Marquee infinito */}
+      <CertificationsSection certifications={certifications} />
     </>
   );
 }

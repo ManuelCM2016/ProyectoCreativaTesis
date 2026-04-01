@@ -1,9 +1,10 @@
 import advisor from './advisor';
 import post from './post';
-import successCase from './successCase';
 import service from './service';
 import video from './video';
 import homeIntro from './homeIntro';
+import chatTestimonial from './chatTestimonial';
+import certification from './certification';
 
-export const schemaTypes = [advisor, post, successCase, service, video, homeIntro];
+export const schemaTypes = [advisor, post, service, video, homeIntro, chatTestimonial, certification];
 

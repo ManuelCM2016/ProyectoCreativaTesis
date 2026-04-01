@@ -212,3 +212,41 @@ export const getHomeIntro = async () => {
     }
 };
 
+// Chat Testimonial Queries (WhatsApp Screenshots)
+export const getChatTestimonials = async () => {
+    try {
+        return await client.fetch(
+            `*[_type == "chatTestimonial"] | order(order asc, _createdAt desc) {
+        _id,
+        studentName,
+        universityInfo,
+        highlightText,
+        emojiBadge,
+        "chatScreenshot": chatScreenshot.asset->url
+      }`
+        );
+    } catch (error) {
+        console.error('Error fetching chat testimonials:', error);
+        return [];
+    }
+};
+
+// Certification / Institution Queries
+export const getCertifications = async () => {
+    try {
+        return await client.fetch(
+            `*[_type == "certification"] | order(order asc, _createdAt desc) {
+        _id,
+        name,
+        fullName,
+        "logo": logo.asset->url,
+        category,
+        url
+      }`
+        );
+    } catch (error) {
+        console.error('Error fetching certifications:', error);
+        return [];
+    }
+};
+
