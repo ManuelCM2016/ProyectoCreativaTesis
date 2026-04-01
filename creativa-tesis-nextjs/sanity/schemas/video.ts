@@ -26,7 +26,7 @@ export default defineType({
                 list: [
                     { title: 'YouTube', value: 'youtube' },
                     { title: 'Facebook', value: 'facebook' },
-                    { title: 'TikTok', value: 'tiktok' },
+                    { title: 'Instagram', value: 'instagram' },
                 ],
                 layout: 'radio',
             },
@@ -36,22 +36,23 @@ export default defineType({
             name: 'videoUrl',
             title: 'URL del Video',
             type: 'url',
-            description: 'Pega la URL completa del video (YouTube, Facebook o TikTok)',
+            description: 'Pega la URL completa del video (YouTube, Facebook o Instagram)',
             validation: (Rule) => Rule.required(),
         }),
         defineField({
-            name: 'orientation',
-            title: 'Orientación',
+            name: 'aspectRatio',
+            title: 'Relación de Aspecto',
             type: 'string',
+            description: 'Elige la proporción visual del reproductor',
             options: {
                 list: [
-                    { title: 'Horizontal (16:9)', value: 'horizontal' },
-                    { title: 'Vertical (9:16)', value: 'vertical' },
-                    { title: 'Cuadrado (1:1)', value: 'square' },
+                    { title: '↔️ Horizontal (16:9) — YouTube, Facebook', value: '16:9' },
+                    { title: '↕️ Vertical (9:16) — Reels, Shorts, Stories', value: '9:16' },
+                    { title: '⬜ Cuadrado (1:1)', value: '1:1' },
                 ],
                 layout: 'radio',
             },
-            initialValue: 'horizontal',
+            initialValue: '16:9',
             validation: (Rule) => Rule.required(),
         }),
         defineField({
@@ -80,22 +81,17 @@ export default defineType({
         select: {
             title: 'title',
             platform: 'platform',
-            orientation: 'orientation',
+            aspectRatio: 'aspectRatio',
         },
-        prepare({ title, platform, orientation }) {
-            const platformEmoji = {
+        prepare({ title, platform, aspectRatio }) {
+            const platformEmoji: Record<string, string> = {
                 youtube: '📺',
                 facebook: '📘',
-                tiktok: '🎵',
-            };
-            const orientationLabel = {
-                horizontal: '↔️',
-                vertical: '↕️',
-                square: '⬜',
+                instagram: '📷',
             };
             return {
                 title: title,
-                subtitle: `${platformEmoji[platform as keyof typeof platformEmoji] || '🎬'} ${platform?.toUpperCase() || ''} ${orientationLabel[orientation as keyof typeof orientationLabel] || ''}`,
+                subtitle: `${platformEmoji[platform] || '🎬'} ${platform?.toUpperCase() || ''} • ${aspectRatio || '16:9'}`,
             };
         },
     },

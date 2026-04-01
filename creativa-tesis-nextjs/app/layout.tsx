@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import ChatbotWidget from "@/components/shared/ChatbotWidget";
+import SiteShell from "@/components/layout/SiteShell";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -42,7 +40,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={[playfair.variable, inter.variable, 'antialiased', 'relative'].join(' ')}>
+      <body className={[playfair.variable, inter.variable, 'antialiased', 'overflow-x-hidden'].join(' ')} suppressHydrationWarning>
         {/* Subtle Gradient Background Overlay */}
         <div
           className="fixed inset-0 z-0 pointer-events-none"
@@ -58,14 +56,8 @@ export default function RootLayout({
           }}
         />
 
-        {/* Content Container */}
-        <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden z-10">
-          <Navbar />
-          <main className="flex flex-col bg-background-light dark:bg-background-dark">
-            {children}
-          </main>
-          <Footer />
-          <ChatbotWidget />
+        <div className="flex min-h-screen w-full flex-col" style={{ isolation: 'isolate' }}>
+          <SiteShell>{children}</SiteShell>
         </div>
       </body>
     </html>

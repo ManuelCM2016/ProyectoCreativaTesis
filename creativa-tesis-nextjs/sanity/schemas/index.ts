@@ -3,6 +3,7 @@ import post from './post';
 import successCase from './successCase';
 import service from './service';
 import video from './video';
+import homeIntro from './homeIntro';
 
-export const schemaTypes = [advisor, post, successCase, service, video];
+export const schemaTypes = [advisor, post, successCase, service, video, homeIntro];
 

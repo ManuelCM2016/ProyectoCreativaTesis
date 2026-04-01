@@ -1,53 +1,57 @@
 import Hero from '@/components/home/Hero';
-import SuccessCasesSection from '@/components/home/SuccessCasesSection';
-import ComparativeMethodology from '@/components/home/ComparativeMethodology';
-import SpecialtiesGallery from '@/components/home/SpecialtiesGallery';
-import SatisfactionGuarantee from '@/components/home/SatisfactionGuarantee';
-import ProcessSection from '@/components/home/ProcessSection';
-import ToolsEcosystem from '@/components/home/ToolsEcosystem';
-import StudentTimeline from '@/components/home/StudentTimeline';
-import TestimonialsSection from '@/components/home/TestimonialsSection';
-import VisualFAQ from '@/components/home/VisualFAQ';
+import IntroSplitSection from '@/components/home/IntroSplitSection';
+import StatsBentoGrid from '@/components/home/StatsBentoGrid';
+import MethodologyComparison from '@/components/home/MethodologyComparison';
+import ServicesAnimatedTabs from '@/components/home/ServicesAnimatedTabs';
+import GuaranteeBanner from '@/components/home/GuaranteeBanner';
+import InteractiveJourney from '@/components/home/InteractiveJourney';
+import MagneticEcosystem from '@/components/home/MagneticEcosystem';
+import TestimonialsMarquee from '@/components/home/TestimonialsMarquee';
+import MinimalistFAQ from '@/components/home/MinimalistFAQ';
 import CTASection from '@/components/home/CTASection';
 import CertificationsSection from '@/components/home/CertificationsSection';
+import { getHomeIntro } from '@/lib/sanity/queries';
 
-export default function Home() {
+export default async function Home() {
+  // Fetch home intro data from Sanity
+  const homeIntroData = await getHomeIntro();
+
   return (
     <>
-      {/* 1. Hero - Conservado */}
+      {/* 1. Hero */}
       <Hero />
 
-      {/* 2. NUEVO: Casos de Éxito en Números */}
-      <SuccessCasesSection />
+      {/* 2. Intro Split — Post-Hero (Dynamic from Sanity) */}
+      <IntroSplitSection data={homeIntroData} />
 
-      {/* 3. NUEVO: Metodología Comparativa (Con vs Sin Asesoría) */}
-      <ComparativeMethodology />
+      {/* 3. Stats Bento Grid */}
+      <StatsBentoGrid />
 
-      {/* 4. NUEVO: Galería de Especialidades Interactiva */}
-      <SpecialtiesGallery />
+      {/* 4. Metodología Comparativa */}
+      <MethodologyComparison />
 
-      {/* 5. NUEVO: Garantía de Satisfacción */}
-      <SatisfactionGuarantee />
+      {/* 5. Servicios con Tabs Animados */}
+      <ServicesAnimatedTabs />
 
-      {/* 6. Tu Camino al Éxito en 4 Pasos - Conservado */}
-      <ProcessSection />
+      {/* 6. Garantía — Banner oscuro */}
+      <GuaranteeBanner />
 
-      {/* 7. NUEVO: Ecosistema de Herramientas (sin calculadoras) */}
-      <ToolsEcosystem />
+      {/* 7. Viaje Interactivo — Sticky Scroll */}
+      <InteractiveJourney />
 
-      {/* 8. NUEVO: Timeline de Éxito del Estudiante */}
-      <StudentTimeline />
+      {/* 8. Ecosistema Magnético — Dark Bento */}
+      <MagneticEcosystem />
 
-      {/* 9. Testimonials - Conservado */}
-      <TestimonialsSection />
+      {/* 9. Testimonios — Marquee infinito */}
+      <TestimonialsMarquee />
 
-      {/* 10. NUEVO: Preguntas Frecuentes Visuales */}
-      <VisualFAQ />
+      {/* 10. FAQ — Acordeón minimalista */}
+      <MinimalistFAQ />
 
-      {/* 11. ¿Tienes dudas sobre tu tema? - Conservado */}
+      {/* 11. CTA Final */}
       <CTASection />
 
-      {/* 12. NUEVO: Certificaciones y Alianzas */}
+      {/* 12. Certificaciones */}
       <CertificationsSection />
     </>
   );

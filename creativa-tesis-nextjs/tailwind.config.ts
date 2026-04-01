@@ -10,12 +10,14 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                'primary-blue': '#1A73E8',
-                'secondary-blue': '#96C2E9',
-                'navy-text': '#1E3A5F',
+                'primary-blue': '#96C1E9',
+                'secondary-blue': '#365571',
+                'navy-text': '#365571',
+                'dark-bg': '#141318',
                 'background-light': '#FFFFFF',
-                'background-dark': '#101a22',
-                'light-grey-bg': '#F8F9FA',
+                'background-dark': '#141318',
+                'light-grey-bg': '#F2F2F2',
+                'accent-lime': '#BACE37',
             },
             fontFamily: {
                 heading: ['var(--font-heading)', 'serif'],

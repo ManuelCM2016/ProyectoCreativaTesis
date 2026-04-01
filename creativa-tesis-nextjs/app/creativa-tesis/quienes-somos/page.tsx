@@ -66,7 +66,7 @@ export default function QuienesSomosPage() {
                             investigación académica. Con más de 100 tesis aprobadas, somos tu aliado estratégico
                             para alcanzar la titulación.
                             <br /> <br />
-                            <p>“Empatizamos y valoramos tu perspectiva.”</p>
+                            <span>“Empatizamos y valoramos tu perspectiva.”</span>
                         </p>
 
                         <div className="flex gap-4 pt-2">

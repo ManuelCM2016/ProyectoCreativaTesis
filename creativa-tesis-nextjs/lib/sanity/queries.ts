@@ -151,6 +151,7 @@ export const getVideos = async () => {
         description,
         platform,
         videoUrl,
+        aspectRatio,
         orientation,
         "thumbnail": thumbnail.asset->url,
         featured
@@ -171,6 +172,7 @@ export const getFeaturedVideos = async () => {
         description,
         platform,
         videoUrl,
+        aspectRatio,
         orientation,
         "thumbnail": thumbnail.asset->url
       }`
@@ -178,6 +180,35 @@ export const getFeaturedVideos = async () => {
     } catch (error) {
         console.error('Error fetching featured videos:', error);
         return [];
+    }
+};
+
+// Home Page Queries
+export const getHomeIntro = async () => {
+    try {
+        return await client.fetch(
+            `*[_type == "homeIntro"][0] {
+        eyebrow,
+        headlineRaw,
+        headlineHighlight,
+        headlineEnd,
+        paragraph1,
+        paragraph2,
+        ctaText,
+        ctaLink,
+        mediaType,
+        "imageUrl": image.asset->url,
+        video {
+            platform,
+            url,
+            aspectRatio,
+            "thumbnail": thumbnail.asset->url
+        }
+      }`
+        );
+    } catch (error) {
+        console.error('Error fetching home intro:', error);
+        return null;
     }
 };
 
