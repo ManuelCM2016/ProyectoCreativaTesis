@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import BokehParticles from '@/components/shared/BokehParticles';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -107,7 +108,8 @@ export default function MethodologyComparison() {
             className="relative bg-white overflow-hidden"
             style={{ paddingTop: 'clamp(5rem, 10vw, 9rem)', paddingBottom: 'clamp(5rem, 10vw, 9rem)' }}
         >
-            <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16">
+            <BokehParticles sectionRef={sectionRef} color="#94C6F2" count={120} />
+            <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16">
 
                 {/* ─── Section Header ─── */}
                 <div className="method-heading opacity-0 text-center mb-14 lg:mb-20 max-w-3xl mx-auto">

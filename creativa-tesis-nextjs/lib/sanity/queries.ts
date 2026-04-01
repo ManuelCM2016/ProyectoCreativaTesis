@@ -250,3 +250,49 @@ export const getCertifications = async () => {
     }
 };
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Social Flyer Queries — Vitrina de Redes Sociales
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** Todos los flyers activos — galería completa de Blog y Recursos */
+export const getSocialFlyers = async () => {
+    try {
+        return await client.fetch(
+            `*[_type == "socialFlyer" && active == true] | order(order asc, publishedAt desc) {
+        _id,
+        title,
+        caption,
+        category,
+        tags,
+        featured,
+        publishedAt,
+        linkUrl,
+        "imageUrl": image.asset->url,
+        "imageDimensions": image.asset->metadata.dimensions
+      }`
+        );
+    } catch (error) {
+        console.error('Error fetching social flyers:', error);
+        return [];
+    }
+};
+
+/** Solo flyers destacados — preview en Inicio (máx 6) */
+export const getFeaturedFlyers = async () => {
+    try {
+        return await client.fetch(
+            `*[_type == "socialFlyer" && active == true && featured == true] | order(order asc, publishedAt desc) [0...6] {
+        _id,
+        title,
+        caption,
+        category,
+        linkUrl,
+        "imageUrl": image.asset->url,
+        "imageDimensions": image.asset->metadata.dimensions
+      }`
+        );
+    } catch (error) {
+        console.error('Error fetching featured flyers:', error);
+        return [];
+    }
+};

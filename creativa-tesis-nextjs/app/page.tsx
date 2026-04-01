@@ -1,6 +1,7 @@
 import Hero from '@/components/home/Hero';
 import IntroSplitSection from '@/components/home/IntroSplitSection';
 import StatsBentoGrid from '@/components/home/StatsBentoGrid';
+import FlyerPreviewHome from '@/components/home/FlyerPreviewHome';
 import MethodologyComparison from '@/components/home/MethodologyComparison';
 import ServicesAnimatedTabs from '@/components/home/ServicesAnimatedTabs';
 import GuaranteeBanner from '@/components/home/GuaranteeBanner';
@@ -10,14 +11,15 @@ import ChatShowcase from '@/components/home/ChatShowcase';
 import MinimalistFAQ from '@/components/home/MinimalistFAQ';
 import CTASection from '@/components/home/CTASection';
 import CertificationsSection from '@/components/home/CertificationsSection';
-import { getHomeIntro, getChatTestimonials, getCertifications } from '@/lib/sanity/queries';
+import { getHomeIntro, getChatTestimonials, getCertifications, getFeaturedFlyers } from '@/lib/sanity/queries';
 
 export default async function Home() {
   // Fetch data from Sanity
-  const [homeIntroData, chatTestimonials, certifications] = await Promise.all([
+  const [homeIntroData, chatTestimonials, certifications, featuredFlyers] = await Promise.all([
     getHomeIntro(),
     getChatTestimonials(),
     getCertifications(),
+    getFeaturedFlyers(),
   ]);
 
   return (
@@ -28,8 +30,11 @@ export default async function Home() {
       {/* 2. Intro Split — Post-Hero (Dynamic from Sanity) */}
       <IntroSplitSection data={homeIntroData} />
 
-      {/* 3. Stats Bento Grid */}
+      {/* 3. Stats Bento Grid — "Resultados auditados" */}
       <StatsBentoGrid />
+
+      {/* 4. Vitrina Social — Preview de Flyers de RRSS */}
+      <FlyerPreviewHome flyers={featuredFlyers} />
 
       {/* 4. Metodología Comparativa */}
       <MethodologyComparison />

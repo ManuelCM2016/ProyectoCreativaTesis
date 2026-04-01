@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import BokehParticles from '@/components/shared/BokehParticles';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -174,9 +175,10 @@ export default function StatsMinimalRow() {
     return (
         <section
             ref={sectionRef}
-            className="w-full bg-[#f2f2f2] text-[#141318] pt-24 pb-32 lg:pt-32 lg:pb-40 px-6 sm:px-10 lg:px-16 border-t border-[#141318]/5"
+            className="relative w-full bg-[#f2f2f2] text-[#141318] pt-24 pb-32 lg:pt-32 lg:pb-40 px-6 sm:px-10 lg:px-16 border-t border-[#141318]/5 overflow-hidden"
         >
-            <div className="max-w-[1400px] mx-auto">
+            <BokehParticles sectionRef={sectionRef} color="#94C6F2" count={120} />
+            <div className="relative z-10 max-w-[1400px] mx-auto">
                 {/* ─── Encabezado ─── */}
                 <div className="stats-heading-text mb-20 lg:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
                     <h2 
