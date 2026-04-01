@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useCallback } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -12,8 +12,7 @@ interface Tool {
     title: string;
     description: string;
     icon: string;
-    accentBg: string;
-    accentText: string;
+    span: string; // grid span class
 }
 
 const tools: Tool[] = [
@@ -22,141 +21,161 @@ const tools: Tool[] = [
         description:
             'Canal abierto 24/7 para dudas rápidas, envío de avances y coordinación con tu asesor.',
         icon: 'chat',
-        accentBg: '#E1F3FE',
-        accentText: '#1F6C9F',
+        span: 'md:col-span-2 lg:col-span-4 lg:row-span-2',
     },
     {
         title: 'Programa Flex',
         description:
-            'Flexibilidad para incorporar más referencias, atender observaciones de último momento, realizar horas extra y evaluar correcciones de manera inmediata.',
+            'Flexibilidad para incorporar más referencias, atender observaciones de último momento y evaluar correcciones de manera inmediata.',
         icon: 'dashboard',
-        accentBg: '#EDF3EC',
-        accentText: '#346538',
+        span: 'md:col-span-2 lg:col-span-4',
     },
     {
         title: 'Turnitin Integrado',
         description:
             'Análisis antiplagio profesional incluido en cada entrega para garantizar originalidad.',
         icon: 'verified_user',
-        accentBg: '#FBF3DB',
-        accentText: '#956400',
+        span: 'md:col-span-2 lg:col-span-4',
     },
     {
         title: 'SPSS & R Studio',
         description:
             'Procesamiento estadístico avanzado con software profesional para resultados confiables.',
         icon: 'analytics',
-        accentBg: '#FDEBEC',
-        accentText: '#9F2F2D',
+        span: 'md:col-span-2 lg:col-span-4',
     },
     {
         title: 'Programa de Presustentación',
         description:
-            'Prepara al tesista antes de su defensa mediante examen, balotario de posibles preguntas, apoyo con presentación PPT, evaluación estadística y simulaciones de sustentación.',
+            'Prepara al tesista antes de su defensa con examen, balotario de preguntas, apoyo con PPT y simulaciones de sustentación.',
         icon: 'local_library',
-        accentBg: '#E1F3FE',
-        accentText: '#1F6C9F',
+        span: 'md:col-span-2 lg:col-span-4',
     },
     {
         title: 'Videollamadas',
         description:
             'Sesiones en Google Meet o Zoom para asesorías en vivo, revisión de avances y simulacros de defensa.',
         icon: 'videocam',
-        accentBg: '#EDF3EC',
-        accentText: '#346538',
+        span: 'md:col-span-2 lg:col-span-4 lg:row-span-2',
     },
 ];
 
-/* ─── EDITORIAL CARD ─── */
-function EditorialCard({ tool, index }: { tool: Tool; index: number }) {
-    const num = String(index + 1).padStart(2, '0');
+/* ─── 3D TILT CARD ─── */
+function TiltCard({ tool, index }: { tool: Tool; index: number }) {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const glowRef = useRef<HTMLDivElement>(null);
+
+    const handleMouseMove = useCallback(
+        (e: React.MouseEvent<HTMLDivElement>) => {
+            const card = cardRef.current;
+            const glow = glowRef.current;
+            if (!card || !glow) return;
+
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = ((y - centerY) / centerY) * -6;
+            const rotateY = ((x - centerX) / centerX) * 6;
+
+            gsap.to(card, {
+                rotateX,
+                rotateY,
+                duration: 0.4,
+                ease: 'power2.out',
+                transformPerspective: 800,
+            });
+
+            gsap.to(glow, {
+                x: x - 120,
+                y: y - 120,
+                opacity: 1,
+                duration: 0.3,
+                ease: 'power2.out',
+            });
+        },
+        []
+    );
+
+    const handleMouseLeave = useCallback(() => {
+        const card = cardRef.current;
+        const glow = glowRef.current;
+        if (!card) return;
+
+        gsap.to(card, {
+            rotateX: 0,
+            rotateY: 0,
+            duration: 0.7,
+            ease: 'elastic.out(1, 0.5)',
+        });
+
+        if (glow) {
+            gsap.to(glow, {
+                opacity: 0,
+                duration: 0.4,
+                ease: 'power2.out',
+            });
+        }
+    }, []);
 
     return (
         <div
-            className="
-                editorial-card opacity-0
-                group w-full
-                border-b border-[#EAEAEA]
-                transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]
-                hover:bg-[#F7F6F3]/80
-            "
+            className={`orbital-card opacity-0 ${tool.span}`}
+            style={{ perspective: '800px' }}
         >
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-10 py-8 md:py-10 lg:py-12 px-2 md:px-4">
+            <div
+                ref={cardRef}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                className="
+                    relative h-full
+                    rounded-[2rem] p-[1.5px]
+                    bg-gradient-to-br from-[#94C6F2]/25 via-white/60 to-[#94C6F2]/10
+                    will-change-transform cursor-default
+                    transition-shadow duration-500
+                    hover:shadow-[0_30px_60px_-20px_rgba(148,198,242,0.25)]
+                "
+            >
+                {/* Inner glass panel */}
+                <div className="relative h-full rounded-[calc(2rem-1.5px)] p-7 lg:p-9 bg-white/80 backdrop-blur-sm overflow-hidden flex flex-col min-h-[200px]">
+                    {/* Radial glow that follows cursor */}
+                    <div
+                        ref={glowRef}
+                        className="absolute w-[240px] h-[240px] rounded-full pointer-events-none opacity-0"
+                        style={{
+                            background:
+                                'radial-gradient(circle, rgba(148,198,242,0.25) 0%, transparent 70%)',
+                        }}
+                    />
 
-                {/* ── Index Number ── */}
-                <span
-                    className="
-                        shrink-0
-                        text-5xl md:text-6xl lg:text-7xl
-                        font-black tracking-[-0.04em] leading-none
-                        text-[#141318]/[0.06]
-                        transition-colors duration-500
-                        group-hover:text-[#94C6F2]/40
-                    "
-                    style={{ fontFamily: '"Questrial", "Satoshi", sans-serif' }}
-                >
-                    {num}
-                </span>
+                    {/* Icon */}
+                    <div className="relative z-10 w-12 h-12 rounded-2xl bg-[#94C6F2]/12 ring-1 ring-[#94C6F2]/15 flex items-center justify-center mb-6 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:bg-[#94C6F2]/20">
+                        <span className="material-symbols-outlined text-xl text-[#365571]">
+                            {tool.icon}
+                        </span>
+                    </div>
 
-                {/* ── Icon Circle ── */}
-                <div
-                    className="
-                        shrink-0 w-12 h-12 md:w-14 md:h-14
-                        rounded-full flex items-center justify-center
-                        transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]
-                        group-hover:scale-110
-                    "
-                    style={{ backgroundColor: tool.accentBg }}
-                >
-                    <span
-                        className="material-symbols-outlined text-xl md:text-2xl"
-                        style={{ color: tool.accentText }}
-                    >
-                        {tool.icon}
-                    </span>
-                </div>
-
-                {/* ── Content ── */}
-                <div className="flex-1 min-w-0">
+                    {/* Title */}
                     <h3
-                        className="
-                            text-lg md:text-xl lg:text-2xl
-                            font-bold text-[#2F3437] tracking-tight leading-tight
-                            mb-1.5
-                            transition-colors duration-300
-                            group-hover:text-[#141318]
-                        "
-                        style={{ fontFamily: '"Questrial", "Satoshi", sans-serif' }}
+                        className="relative z-10 text-base lg:text-lg font-bold text-[#2F3437] tracking-tight mb-2"
+                        style={{
+                            fontFamily: '"Questrial", "Satoshi", sans-serif',
+                        }}
                     >
                         {tool.title}
                     </h3>
+
+                    {/* Description */}
                     <p
-                        className="
-                            text-sm md:text-base
-                            text-[#787774] leading-relaxed
-                            max-w-[55ch]
-                        "
-                        style={{ fontFamily: '"Inter", "Questrial", sans-serif' }}
+                        className="relative z-10 text-xs lg:text-sm text-[#787774] leading-relaxed max-w-[35ch]"
+                        style={{
+                            fontFamily: '"Inter", "Questrial", sans-serif',
+                        }}
                     >
                         {tool.description}
                     </p>
-                </div>
-
-                {/* ── Trailing Arrow ── */}
-                <div
-                    className="
-                        shrink-0 hidden md:flex
-                        items-center justify-center
-                        w-10 h-10 rounded-full
-                        bg-[#141318]/[0.03] ring-1 ring-[#141318]/[0.04]
-                        transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]
-                        group-hover:bg-[#94C6F2]/15 group-hover:ring-[#94C6F2]/25
-                        group-hover:translate-x-1
-                    "
-                >
-                    <span className="material-symbols-outlined text-base text-[#141318]/30 transition-colors duration-300 group-hover:text-[#94C6F2]">
-                        arrow_forward
-                    </span>
                 </div>
             </div>
         </div>
@@ -171,15 +190,15 @@ export default function MagneticEcosystem() {
         () => {
             // ── Heading fade-up ──
             gsap.fromTo(
-                '.editorial-heading',
-                { y: 20, opacity: 0 },
+                '.orbital-heading',
+                { y: 30, opacity: 0 },
                 {
                     y: 0,
                     opacity: 1,
-                    duration: 0.7,
+                    duration: 0.8,
                     ease: 'power3.out',
                     scrollTrigger: {
-                        trigger: '.editorial-heading',
+                        trigger: '.orbital-heading',
                         start: 'top 88%',
                         once: true,
                     },
@@ -187,20 +206,21 @@ export default function MagneticEcosystem() {
             );
 
             // ── Staggered card reveals ──
-            const cards = gsap.utils.toArray<HTMLElement>('.editorial-card');
+            const cards = gsap.utils.toArray<HTMLElement>('.orbital-card');
             cards.forEach((card, i) => {
                 gsap.fromTo(
                     card,
-                    { y: 24, opacity: 0 },
+                    { y: 50, opacity: 0, rotateX: 8 },
                     {
                         y: 0,
                         opacity: 1,
-                        duration: 0.6,
+                        rotateX: 0,
+                        duration: 0.7,
                         delay: i * 0.08,
                         ease: 'power3.out',
                         scrollTrigger: {
                             trigger: card,
-                            start: 'top 92%',
+                            start: 'top 90%',
                             once: true,
                         },
                     }
@@ -213,25 +233,32 @@ export default function MagneticEcosystem() {
     return (
         <section
             ref={sectionRef}
-            className="relative bg-[#FBFBFA] overflow-hidden"
+            className="relative bg-[#F2F2F2] overflow-hidden"
             style={{
-                paddingTop: 'clamp(5rem, 10vw, 10rem)',
-                paddingBottom: 'clamp(5rem, 10vw, 10rem)',
+                paddingTop: 'clamp(5rem, 10vw, 9rem)',
+                paddingBottom: 'clamp(5rem, 10vw, 9rem)',
             }}
         >
-            {/* Subtle warm radial depth */}
+            {/* Ambient background blobs */}
             <div
-                className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full pointer-events-none opacity-[0.04]"
+                className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full pointer-events-none opacity-[0.07]"
                 style={{
                     background:
                         'radial-gradient(circle, #94C6F2 0%, transparent 70%)',
                 }}
             />
+            <div
+                className="absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full pointer-events-none opacity-[0.05]"
+                style={{
+                    background:
+                        'radial-gradient(circle, #BACE37 0%, transparent 70%)',
+                }}
+            />
 
-            <div className="relative w-full max-w-[960px] mx-auto px-4 sm:px-6">
+            <div className="relative w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16">
                 {/* ─── Section Header ─── */}
-                <div className="editorial-heading opacity-0 mb-14 lg:mb-20">
-                    <span className="inline-block rounded-full px-4 py-1.5 text-[10px] uppercase tracking-[0.25em] font-semibold bg-[#E1F3FE] text-[#1F6C9F] mb-6">
+                <div className="orbital-heading opacity-0 text-center mb-14 lg:mb-20 max-w-3xl mx-auto">
+                    <span className="inline-block rounded-full px-4 py-1.5 text-[10px] uppercase tracking-[0.25em] font-semibold bg-[#94C6F2]/10 text-[#365571] ring-1 ring-[#94C6F2]/15 mb-6">
                         Tu ecosistema de apoyo
                     </span>
                     <h2
@@ -241,23 +268,15 @@ export default function MagneticEcosystem() {
                         }}
                     >
                         Herramientas{' '}
-                        <span
-                            className="italic font-normal text-[#94C6F2]"
-                            style={{
-                                fontFamily:
-                                    '"Playfair Display", "Newsreader", serif',
-                            }}
-                        >
-                            profesionales
-                        </span>{' '}
-                        a tu alcance
+                        <span className="text-[#94C6F2]">profesionales</span> a
+                        tu alcance
                     </h2>
                 </div>
 
-                {/* ─── Editorial Card List ─── */}
-                <div className="border-t border-[#EAEAEA]">
+                {/* ─── Asymmetric Bento Grid ─── */}
+                <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-12 gap-4 lg:gap-5 auto-rows-auto">
                     {tools.map((tool, i) => (
-                        <EditorialCard key={i} tool={tool} index={i} />
+                        <TiltCard key={i} tool={tool} index={i} />
                     ))}
                 </div>
             </div>
