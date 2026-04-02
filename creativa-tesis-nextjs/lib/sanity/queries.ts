@@ -277,11 +277,11 @@ export const getSocialFlyers = async () => {
     }
 };
 
-/** Solo flyers destacados — preview en Inicio (máx 6) */
+/** Solo flyers destacados — preview en Inicio (máx 10) */
 export const getFeaturedFlyers = async () => {
     try {
         return await client.fetch(
-            `*[_type == "socialFlyer" && active == true && featured == true] | order(order asc, publishedAt desc) [0...6] {
+            `*[_type == "socialFlyer" && active == true && featured == true] | order(order asc, publishedAt desc) [0...10] {
         _id,
         title,
         caption,

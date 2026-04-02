@@ -103,7 +103,7 @@ export default {
             title: '⭐ Destacado en la página de Inicio',
             type: 'boolean',
             fieldset: 'publication',
-            description: 'Activa esta opción para que aparezca en la sección "Vitrina Social" de la página principal. Máximo 6 recomendados.',
+            description: 'Activa esta opción para que aparezca en la sección "Vitrina Social" de la página principal. Máximo 10 recomendados.',
             initialValue: false,
         },
         {

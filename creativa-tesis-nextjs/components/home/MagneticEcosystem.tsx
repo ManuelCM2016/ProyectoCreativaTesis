@@ -140,7 +140,7 @@ function TiltCard({ tool, index }: { tool: Tool; index: number }) {
                 "
             >
                 {/* Inner glass panel */}
-                <div className="relative h-full rounded-[calc(2rem-1.5px)] p-7 lg:p-9 bg-white/80 backdrop-blur-sm overflow-hidden flex flex-col min-h-[200px]">
+                <div className="relative h-full rounded-[calc(2rem-1.5px)] p-7 lg:p-9 bg-[#96C1E8] backdrop-blur-sm overflow-hidden flex flex-col min-h-[200px]">
                     {/* Radial glow that follows cursor */}
                     <div
                         ref={glowRef}
