@@ -47,10 +47,9 @@ export default function Navbar() {
         {
             label: 'Servicios',
             items: [
-                { href: '/servicios', label: 'Ver todos los servicios' },
-                { href: '/servicios#pregrado', label: 'Servicios de Pregrado' },
-                { href: '/servicios#postgrado', label: 'Servicios de Postgrado' },
-                { href: '/servicios#estadisticos', label: 'Análisis Estadístico' },
+                { href: '/servicios', label: 'Programa Flex' },
+                { href: '/servicios#otros-servicios', label: 'Otros Servicios' },
+                { href: '/contacto', label: 'Cotizar Ahora' },
             ],
         },
         { href: '/blog', label: 'Blog y Recursos' },

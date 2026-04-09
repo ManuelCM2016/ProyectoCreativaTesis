@@ -200,7 +200,7 @@ export default function StatsMinimalRow() {
                     {/* Línea horizontal principal superior */}
                     <div className="absolute top-0 left-0 w-full h-px bg-[#141318]/10" />
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
                         {stats.map((stat, i) => (
                             <div 
                                 key={i} 

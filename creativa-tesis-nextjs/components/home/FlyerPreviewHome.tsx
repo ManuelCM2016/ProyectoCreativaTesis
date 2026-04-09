@@ -50,14 +50,37 @@ interface CardTransform {
 }
 
 // Keyframes by integer offset distance from center (0 = center)
-const KF: CardTransform[] = [
-  { x: 0, z: 220, ry: 0, sc: 1, op: 1 },       // 0: center
-  { x: 285, z: -30, ry: -28, sc: 0.78, op: 0.8 },  // 1: first lateral
-  { x: 480, z: -140, ry: -44, sc: 0.6, op: 0.4 },  // 2: second
-  { x: 640, z: -250, ry: -55, sc: 0.45, op: 0 },   // 3+: hidden
-];
+// Returns responsive values based on viewport width
+function getKeyframes(): CardTransform[] {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+  const isTablet = typeof window !== 'undefined' && window.innerWidth < 1024;
+  
+  if (isMobile) {
+    return [
+      { x: 0, z: 140, ry: 0, sc: 1, op: 1 },
+      { x: 160, z: -20, ry: -25, sc: 0.72, op: 0.6 },
+      { x: 260, z: -80, ry: -40, sc: 0.5, op: 0 },
+      { x: 320, z: -140, ry: -50, sc: 0.4, op: 0 },
+    ];
+  }
+  if (isTablet) {
+    return [
+      { x: 0, z: 180, ry: 0, sc: 1, op: 1 },
+      { x: 220, z: -25, ry: -26, sc: 0.76, op: 0.7 },
+      { x: 380, z: -110, ry: -42, sc: 0.55, op: 0.2 },
+      { x: 500, z: -200, ry: -52, sc: 0.42, op: 0 },
+    ];
+  }
+  return [
+    { x: 0, z: 220, ry: 0, sc: 1, op: 1 },
+    { x: 285, z: -30, ry: -28, sc: 0.78, op: 0.8 },
+    { x: 480, z: -140, ry: -44, sc: 0.6, op: 0.35 },
+    { x: 640, z: -250, ry: -55, sc: 0.45, op: 0 },
+  ];
+}
 
 function getCardTransform(offset: number): CardTransform {
+  const KF = getKeyframes();
   // offset is fractional, signed. e.g. -1.3, 0, 0.7, 2.1
   const sign = offset >= 0 ? 1 : -1;
   const abs = Math.abs(offset);
@@ -555,7 +578,7 @@ export default function FlyerPreviewHome({ flyers }: { flyers: Flyer[] }) {
         {/* Bokeh particles — mouse-reactive */}
         <BokehParticles sectionRef={sectionRef} color="#ffffff" count={210} mouseRadius={180} mouseForce={1.2} />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-20">
           {/* ── Header ── */}
           <div
             ref={headRef}
@@ -635,7 +658,7 @@ export default function FlyerPreviewHome({ flyers }: { flyers: Flyer[] }) {
             ref={stageRef}
             className="relative mx-auto touch-none select-none"
             style={{
-              height: 420,
+              height: 'clamp(320px, 55vw, 420px)',
               perspective: '1100px',
               perspectiveOrigin: '50% 50%',
               cursor: isDragging.current ? 'grabbing' : 'grab',
@@ -654,12 +677,12 @@ export default function FlyerPreviewHome({ flyers }: { flyers: Flyer[] }) {
                 data-flyer-idx={i}
                 className="absolute"
                 style={{
-                  width: 272,
-                  height: 368,
+                  width: 'clamp(200px, 38vw, 272px)',
+                  height: 'clamp(270px, 50vw, 368px)',
                   top: '50%',
                   left: '50%',
-                  marginLeft: -136,
-                  marginTop: -184,
+                  marginLeft: 'clamp(-100px, -19vw, -136px)',
+                  marginTop: 'clamp(-135px, -25vw, -184px)',
                   borderRadius: 20,
                   overflow: 'hidden',
                   willChange: 'transform, opacity',

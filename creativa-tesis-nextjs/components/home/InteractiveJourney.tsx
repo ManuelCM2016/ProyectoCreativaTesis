@@ -76,6 +76,9 @@ export default function InteractiveJourney() {
     const trackRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
+        // Only enable horizontal scroll on desktop (1024px+)
+        if (typeof window === 'undefined' || window.innerWidth < 1024) return;
+
         const panels = gsap.utils.toArray<HTMLElement>('.journey-panel');
         if (!trackRef.current || !wrapperRef.current || panels.length === 0) return;
 
@@ -181,14 +184,14 @@ export default function InteractiveJourney() {
     return (
         <section
             ref={wrapperRef}
-            className="min-h-screen w-full bg-[#141318]"
+            className="min-h-screen w-full bg-[#141318] overflow-hidden"
         // NO relative, NO transform, NO will-change-transform, NO overflow en este elemento
         >
             {/* ═══════ Background Parallax Image ═══════ */}
             <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
                 <div
                     className="journey-bg-parallax absolute inset-0 will-change-transform"
-                    style={{ left: '-5%', width: '110%' }}
+                    style={{ left: '-5%', width: '110%', maxWidth: '110vw' }}
                 >
                     <Image
                         src="/images/CONTENEDOR_4.jpg"
@@ -208,7 +211,7 @@ export default function InteractiveJourney() {
 
             {/* ═══════ SVG Logo Watermark ═══════ */}
             <div
-                className="journey-logo-watermark absolute top-1/2 left-[5%] -translate-y-1/2 w-[350px] lg:w-[600px] aspect-square pointer-events-none will-change-transform"
+                className="journey-logo-watermark absolute top-1/2 left-[5%] -translate-y-1/2 w-[200px] sm:w-[350px] lg:w-[600px] aspect-square pointer-events-none will-change-transform"
                 style={{ zIndex: 1, opacity: 0.08 }}
             >
                 <svg viewBox="0 0 240 260" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
@@ -220,11 +223,11 @@ export default function InteractiveJourney() {
             {/* ═══════ Horizontal Track ═══════ */}
             <div
                 ref={trackRef}
-                className="z-10 flex h-screen will-change-transform"
-                style={{ width: 'fit-content' }}
+                className="z-10 lg:flex h-auto lg:h-screen will-change-transform flex flex-col lg:flex-row"
+                style={{ width: 'auto' }}
             >
                 {/* ─── Panel 1: Intro ─── */}
-                <div className="journey-panel w-screen h-screen flex-shrink-0 flex justify-center items-center px-6 sm:px-10 lg:px-16">
+                <div className="journey-panel w-full lg:w-screen min-h-screen lg:h-screen flex-shrink-0 flex justify-center items-center px-4 sm:px-6 lg:px-16 py-20 lg:py-0">
                     <div className="max-w-4xl text-center lg:text-left">
                         <span className="inline-block rounded-full px-4 py-1.5 text-[10px] uppercase tracking-[0.25em] font-semibold bg-[#BACE37]/12 text-[#BACE37] ring-1 ring-[#BACE37]/20 mb-6 lg:mb-8">
                             Tu camino al éxito
@@ -251,7 +254,7 @@ export default function InteractiveJourney() {
                 </div>
 
                 {/* ─── Panel 2: Video Preview ─── */}
-                <div className="journey-panel w-screen h-screen flex-shrink-0 flex items-center justify-center px-6 sm:px-10 lg:px-16">
+                <div className="journey-panel w-full lg:w-screen min-h-[60vh] lg:h-screen flex-shrink-0 flex items-center justify-center px-4 sm:px-6 lg:px-16 py-12 lg:py-0">
                     <div className="w-full max-w-4xl rounded-[2rem] p-2 bg-white/5 ring-1 ring-white/10 backdrop-blur-sm">
                         <div className="relative overflow-hidden rounded-[calc(2rem-0.5rem)] shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)]">
                             <video autoPlay loop muted playsInline className="w-full aspect-video object-cover" poster="/images/asesoria-poster.jpg">
@@ -270,7 +273,7 @@ export default function InteractiveJourney() {
                 {milestones.map((milestone, i) => (
                     <div
                         key={i}
-                        className="journey-panel w-screen h-screen flex-shrink-0 flex items-center justify-center px-4 sm:px-6 lg:px-16"
+                        className="journey-panel w-full lg:w-screen min-h-[70vh] lg:h-screen flex-shrink-0 flex items-center justify-center px-4 sm:px-6 lg:px-16 py-12 lg:py-0"
                     >
                         <div className="journey-card-inner w-[95%] max-w-[1100px] rounded-[2.5rem] p-1.5 bg-white/[0.03] ring-1 ring-white/5 backdrop-blur-md">
                             <div className="rounded-[calc(2.5rem-0.375rem)] p-8 sm:p-10 lg:p-14 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] bg-[#141318]/40 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
@@ -319,7 +322,7 @@ export default function InteractiveJourney() {
                 ))}
 
                 {/* ─── Panel 10: CTA Final ─── */}
-                <div className="journey-panel w-screen h-screen flex-shrink-0 flex justify-center items-center px-6 sm:px-10 lg:px-16">
+                <div className="journey-panel w-full lg:w-screen min-h-[60vh] lg:h-screen flex-shrink-0 flex justify-center items-center px-4 sm:px-6 lg:px-16 py-20 lg:py-0">
                     <div className="max-w-3xl text-center">
                         <div className="w-20 h-20 rounded-[2rem] bg-[#BACE37]/10 ring-1 ring-[#BACE37]/20 flex items-center justify-center mx-auto mb-10">
                             <span className="material-symbols-outlined text-4xl text-[#BACE37]">emoji_events</span>

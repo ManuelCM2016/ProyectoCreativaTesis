@@ -7,6 +7,7 @@ import socialFlyer from './socialFlyer';
 import advisor from './advisor';
 import service from './service';
 import certification from './certification';
+import thesisCover from './thesisCover';
 
 // ── Página de Inicio ───────────────────────────────────────────────────────────
 import homeIntro from './homeIntro';
@@ -21,6 +22,7 @@ export const schemaTypes = [
   advisor,
   service,
   certification,
+  thesisCover,
   // Página de Inicio
   homeIntro,
   chatTestimonial,

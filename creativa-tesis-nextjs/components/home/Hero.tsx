@@ -54,14 +54,14 @@ export default function Hero() {
             </video>
 
             {/* Dark overlay — strong at the bottom so text is legible, clear at top so video shows */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#141318] via-[#141318]/50 to-[#141318]/10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#141318]/80 via-transparent to-transparent" />
             <div className="relative z-10 w-full flex flex-col min-h-screen">
                 {/* Spacer — pushes content to the bottom */}
                 <div className="flex-1" />
 
                 {/* Bottom content band */}
                 <div className="w-full px-4 sm:px-6 pb-10 sm:pb-14 flex flex-col items-center">
-                    
+
                     {/* Center Text Column */}
                     <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
                         {/* Headline */}
@@ -85,7 +85,7 @@ export default function Hero() {
 
                         {/* CTA Buttons - Centered below subtitle */}
                         <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full sm:w-auto">
-                            
+
                             {/* Secondary Button */}
                             <Link
                                 href="/contacto"

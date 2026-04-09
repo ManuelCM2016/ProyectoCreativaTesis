@@ -232,8 +232,8 @@ export default function ServicesAnimatedTabs() {
                 </div>
 
                 {/* ─── Pill Tabs Bar ─── */}
-                <div className="services-tabs-bar opacity-0 flex justify-center mb-10 lg:mb-14">
-                    <div className="inline-flex items-center gap-1.5 rounded-full bg-[#122130] p-1.5 ring-1 ring-[#96C1E8]/10 shadow-[0_2px_12px_rgba(0,0,0,0.2)]">
+                <div className="services-tabs-bar opacity-0 flex justify-center mb-10 lg:mb-14 overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide">
+                    <div className="inline-flex items-center gap-1 sm:gap-1.5 rounded-full bg-[#122130] p-1 sm:p-1.5 ring-1 ring-[#96C1E8]/10 shadow-[0_2px_12px_rgba(0,0,0,0.2)]">
                         {tabsData.map((tab, i) => (
                             <button
                                 key={tab.id}

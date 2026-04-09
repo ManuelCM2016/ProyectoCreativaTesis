@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="light" suppressHydrationWarning>
+    <html lang="es" className="light overflow-x-hidden" suppressHydrationWarning>
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
@@ -47,12 +47,12 @@ export default function RootLayout({
           style={{
             background: `linear-gradient(45deg, 
               #C1E2F7 0%, 
-              #95c2e6 20%, q tq t
+              #95c2e6 20%,
               #7AB5DD 40%, 
               #5FA7D4 60%, 
               #4A8FC0 80%, 
               #3D7BA8 100%)`,
-            opacity: 102
+            opacity: 0
           }}
         />
 

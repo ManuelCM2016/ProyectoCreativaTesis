@@ -16,33 +16,39 @@ export default function Footer() {
         if (!footerRef.current) return;
 
         // Stagger-animate the columns
-        gsap.from('.footer-col', {
-            y: 40,
-            opacity: 0,
-            duration: 0.7,
-            stagger: 0.12,
-            ease: 'power3.out',
-            scrollTrigger: {
-                trigger: footerRef.current,
-                start: 'top 90%',
-                toggleActions: 'play none none none',
-                once: true,
-            },
-        });
+        gsap.fromTo('.footer-col',
+            { y: 40, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.7,
+                stagger: 0.12,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: footerRef.current,
+                    start: 'top 90%',
+                    toggleActions: 'play none none none',
+                    once: true,
+                },
+            }
+        );
 
         // Animate the bottom bar
-        gsap.from('.footer-bottom', {
-            y: 20,
-            opacity: 0,
-            duration: 0.6,
-            ease: 'power3.out',
-            scrollTrigger: {
-                trigger: '.footer-bottom',
-                start: 'top 95%',
-                toggleActions: 'play none none none',
-                once: true,
-            },
-        });
+        gsap.fromTo('.footer-bottom',
+            { y: 20, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.footer-bottom',
+                    start: 'top 95%',
+                    toggleActions: 'play none none none',
+                    once: true,
+                },
+            }
+        );
     }, { scope: footerRef });
 
     return (

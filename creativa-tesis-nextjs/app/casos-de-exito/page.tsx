@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getChatTestimonials } from '@/lib/sanity/queries';
+import { getChatTestimonials, getThesisCovers } from '@/lib/sanity/queries';
 import SuccessHero from '@/components/success/SuccessHero';
 import SuccessBeforeAfter from '@/components/success/SuccessBeforeAfter';
 import ChatShowcase from '@/components/home/ChatShowcase';
@@ -14,8 +14,11 @@ export const metadata: Metadata = {
 export const revalidate = 60; // ISR cache for one minute
 
 export default async function SuccessCasesPage() {
-    // Fetch live testimonials from Sanity (or fallback empty if not available)
-    const chatTestimonials = await getChatTestimonials().catch(() => []);
+    // Fetch live data from Sanity
+    const [chatTestimonials, thesisCovers] = await Promise.all([
+        getChatTestimonials().catch(() => []),
+        getThesisCovers().catch(() => []),
+    ]);
 
     return (
         <main className="w-full flex-col flex overflow-hidden lg:pt-20">
@@ -28,8 +31,8 @@ export default async function SuccessCasesPage() {
             {/* 3. The raw truth (Interactive iPhone Showcase) */}
             <ChatShowcase testimonials={chatTestimonials} />
             
-            {/* 4. Physical evidence / Marquee */}
-            <SuccessMarquee />
+            {/* 4. Physical evidence / Marquee — Now Sanity-driven with modal */}
+            <SuccessMarquee theses={thesisCovers} />
             
             {/* 5. Strong CTA */}
             <SuccessCTA />

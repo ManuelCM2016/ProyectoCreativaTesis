@@ -296,3 +296,52 @@ export const getFeaturedFlyers = async () => {
         return [];
     }
 };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Universities — Logos para página de Servicios
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** Universidades — filtra certifications por categoría 'universidad' */
+export const getUniversities = async () => {
+    try {
+        return await client.fetch(
+            `*[_type == "certification" && category == "universidad"] | order(order asc) {
+        _id,
+        name,
+        fullName,
+        "logo": logo.asset->url
+      }`
+        );
+    } catch (error) {
+        console.error('Error fetching universities:', error);
+        return [];
+    }
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Thesis Covers — Portadas de Tesis para Casos de Éxito
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** Portadas de tesis — sección "De la idea a la impresión final" */
+export const getThesisCovers = async () => {
+    try {
+        return await client.fetch(
+            `*[_type == "thesisCover"] | order(order asc) {
+        _id,
+        title,
+        fullTitle,
+        studentName,
+        university,
+        universityFull,
+        career,
+        year,
+        coverColor,
+        accentColor,
+        "coverImage": coverImage.asset->url
+      }`
+        );
+    } catch (error) {
+        console.error('Error fetching thesis covers:', error);
+        return [];
+    }
+};

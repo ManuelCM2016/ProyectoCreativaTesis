@@ -1,0 +1,96 @@
+export default {
+    name: 'thesisCover',
+    title: 'Portada de Tesis',
+    type: 'document',
+    icon: () => '📘',
+    fields: [
+        {
+            name: 'title',
+            title: 'Título de la Tesis',
+            type: 'string',
+            description: 'Ej: "Estrés Laboral", "Gestión Pública"',
+            validation: (Rule: any) => Rule.required(),
+        },
+        {
+            name: 'fullTitle',
+            title: 'Título Completo',
+            type: 'text',
+            description: 'El título completo de la tesis tal como aparece en la portada.',
+            rows: 3,
+        },
+        {
+            name: 'studentName',
+            title: 'Nombre del Tesista',
+            type: 'string',
+            description: 'Nombre completo del estudiante (opcional, se puede omitir por privacidad).',
+        },
+        {
+            name: 'university',
+            title: 'Universidad (siglas)',
+            type: 'string',
+            description: 'Ej: "UNJBG", "UPT", "UAP"',
+            validation: (Rule: any) => Rule.required(),
+        },
+        {
+            name: 'universityFull',
+            title: 'Universidad (Nombre Completo)',
+            type: 'string',
+            description: 'Ej: "Universidad Nacional Jorge Basadre Grohmann"',
+        },
+        {
+            name: 'career',
+            title: 'Carrera Profesional',
+            type: 'string',
+            description: 'Ej: "Ingeniería Civil", "Derecho", "Administración"',
+        },
+        {
+            name: 'year',
+            title: 'Año de Sustentación',
+            type: 'string',
+            description: 'Ej: "2024", "2025"',
+        },
+        {
+            name: 'coverColor',
+            title: 'Color de Portada (hex)',
+            type: 'string',
+            description: 'Código hexadecimal del color principal de la tesis empastada. Ej: "#365571"',
+            initialValue: '#365571',
+            validation: (Rule: any) => Rule.required(),
+        },
+        {
+            name: 'accentColor',
+            title: 'Color de Acento (hex)',
+            type: 'string',
+            description: 'Color del borde lateral decorativo. Ej: "#94C6F2"',
+            initialValue: '#94C6F2',
+        },
+        {
+            name: 'coverImage',
+            title: 'Foto de Tesis Empastada (opcional)',
+            type: 'image',
+            description: 'Foto real de la tesis empastada del estudiante.',
+            options: { hotspot: true },
+        },
+        {
+            name: 'order',
+            title: 'Orden de Aparición',
+            type: 'number',
+            description: 'Número menor aparece primero.',
+            initialValue: 0,
+        },
+    ],
+    orderings: [
+        {
+            title: 'Orden Manual',
+            name: 'manualOrder',
+            by: [{ field: 'order', direction: 'asc' }],
+        },
+    ],
+    preview: {
+        select: {
+            title: 'title',
+            subtitle: 'university',
+            media: 'coverImage',
+        },
+    },
+};
